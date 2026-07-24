@@ -86,9 +86,17 @@ Marka geçici olarak **KatipSınav** (ikisini de kapsar).
   (Dev sunucu opsiyonel: `node server.mjs` → localhost:8080.)
 - Yayın: kullanıcı "şimdilik sadece yerel" dedi; deploy YOK.
 
+## Eklendi (2026-07-24, ikinci oturum)
+- **Gerçek metinler:** PGM resmî ZIP'inden 30 gerçek 2025 zabıt katibi sınav metni (`js/texts.js`).
+  Hepsi hukuk konulu, küçük harf, noktalamasız, ~300 kelime. (Kaynak ZIP scratchpad'de.)
+- **Tema seçimi:** açık/koyu, `js/theme.js` + her sayfada tema butonu, localStorage'da.
+- **KRİTİK MOTOR DÜZELTMESİ:** Hizalama artık referansın adayın ulaştığı **önekinde** biter;
+  ulaşılamayan kuyruk ATLANAN sayılmaz (önceden 300 kelimelik metinde herkes otomatik KALIR
+  oluyordu). Bkz. engine.js `jSon` (en düşük maliyetli bitiş noktası). 37/37 test geçiyor.
+
 ## Sıradaki (opsiyonel cila)
-Tema değiştirme butonu, ses efektleri, sınavda canlı renklendirme aç/kapa, ısınma turu vurgusu,
-resmî ZIP metinlerini havuza ekleme. Sonra istenirse deploy (Netlify/GitHub Pages/Vercel).
+Ses efektleri, sınavda canlı renklendirme aç/kapa, ısınma turu vurgusu.
+Sonra istenirse deploy (Netlify/GitHub Pages/Vercel).
 
 ## Notlar
 - Kullanıcı Türkçe iletişim kuruyor; tüm UI ve dokümantasyon Türkçe.

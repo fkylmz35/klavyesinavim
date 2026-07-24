@@ -329,3 +329,29 @@ body {
   .kb-bosluk { width: 200px; }
   .kb-sira-2 { padding-left: 20px; }
 }
+
+/* ==========================================================================
+   Tema butonu + koyu tema uyumları
+   ========================================================================== */
+.menu { margin-left: auto; }
+.tema-btn {
+  margin-left: 10px; width: 40px; height: 40px; flex-shrink: 0;
+  border: 1.5px solid var(--cizgi); border-radius: 10px; background: var(--paper);
+  color: var(--ink); font-size: 18px; cursor: pointer; line-height: 1;
+  display: grid; place-items: center; transition: border-color .15s, background .15s;
+}
+.tema-btn:hover { border-color: var(--ink); background: var(--zemin-2); }
+
+/* Üst çubuk zemini temaya uysun (önceki sabit açık renk yerine) */
+.ust { background: color-mix(in srgb, var(--paper) 82%, transparent); }
+
+/* Koyu temada açık kalan yüzeyleri düzelt */
+[data-tema="koyu"] .yazma-alani { background: #0f1826; color: var(--ink); }
+[data-tema="koyu"] .yazma-alani:focus { box-shadow: 0 0 0 3px rgba(232,236,243,.14); }
+[data-tema="koyu"] .kb-tus { color: #0b1220; }
+[data-tema="koyu"] .btn.birincil { color: #0f1622; }
+[data-tema="koyu"] .marka-sim { background: var(--ink); color: #0f1622; }
+
+@media (max-width: 620px) {
+  .tema-btn { width: 36px; height: 36px; margin-left: 6px; }
+}

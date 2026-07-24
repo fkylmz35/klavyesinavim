@@ -153,9 +153,17 @@ function hizala(T, R) {
     }
   }
 
+  // Bitiş noktası: tüm yazılan kelimeler tüketildikten sonra (i = n), referansın
+  // HANGİ konumunda durduğumuzu en düşük maliyetle seçeriz. Bu konumdan sonrası
+  // "ulaşılamayan kuyruk"tur (adayın süresi yetmedi) — yola hiç girmez, atlanan sayılmaz.
+  let jSon = 0, enAz = Infinity;
+  for (let jj = 0; jj <= m; jj++) {
+    if (dp[n][jj] < enAz) { enAz = dp[n][jj]; jSon = jj; }
+  }
+
   // Geri izleme
   const ops = [];
-  let i = n, j = m;
+  let i = n, j = jSon;
   while (i > 0 || j > 0) {
     const b = geri[i][j];
     if (!b) break; // güvenlik
@@ -186,21 +194,28 @@ function degerlendir(referansMetin, yazilanMetin, secenek = {}) {
   let atlananKelime = 0;
   const hataListesi = []; // { yazilan, dogrusu, tur }
 
+  // Not: Hizalama, adayın ulaştığı referans önekinde biter; ulaşılamayan kuyruk yola
+  // hiç girmez. Bu yüzden buradaki tüm SKIP'ler gerçek (metin içinde geçilen) atlamalardır.
+  let ulasilanReferans = 0; // adayın metinde ilerlediği referans kelime sayısı
   for (const o of ops) {
     if (o.op === OP.MATCH) {
       const t = T[o.i], r = R[o.j];
       if (o.hata === 0) dogruKelime++;
       else { hataliKelime++; hataListesi.push({ yazilan: t, dogrusu: r, tur: hataTuru(t, r) }); }
+      ulasilanReferans++;
     } else if (o.op === OP.MERGE) {
       hataliKelime++;
       hataListesi.push({ yazilan: T[o.i], dogrusu: R[o.j] + ' ' + R[o.j + 1], tur: 'kelime_birlestirme' });
+      ulasilanReferans += 2;
     } else if (o.op === OP.SPLIT) {
       const parcalar = T.slice(o.i, o.i + o.k);
       const adet = o.dogruBolme ? 1 : o.k;
       hataliKelime += adet;
       hataListesi.push({ yazilan: parcalar.join(' '), dogrusu: R[o.j], tur: 'kelime_bolme', hataAdedi: adet });
+      ulasilanReferans++;
     } else if (o.op === OP.SKIP) {
       atlananKelime++;
+      ulasilanReferans++;
     } else if (o.op === OP.INSERT) {
       hataliKelime++;
       hataListesi.push({ yazilan: T[o.i], dogrusu: '', tur: 'karisik' });
@@ -245,6 +260,7 @@ function degerlendir(referansMetin, yazilanMetin, secenek = {}) {
     fazlaBosluk,
     toplamYazilan,
     toplamReferans: R.length,
+    ulasilanReferans,
     hataOrani,
     hataOraniYuzde: Math.round(hataOrani * 1000) / 10,
     basarili,

@@ -51,11 +51,25 @@ console.log('\n[Atlanan kelime — hata sayılmaz]');
   esit('atlanan hata değil (hatalı=0)', r.hataliKelime, 0);
 }
 
-console.log('\n[Geçersizlik kapısı: 22+ atlanan => başarısız]');
+console.log('\n[Ulaşılamayan kuyruk ATLANAN sayılmaz (gerçek metin senaryosu)]');
 {
-  const ref = Array.from({ length: 30 }, (_, i) => 'kelime' + i).join(' ');
-  const yazi = ['kelime0', 'kelime1', 'kelime2', 'kelime3'].join(' '); // 26 atlanan
-  const r = degerlendir(ref, yazi);
+  // 300 kelimelik metnin ilk 5 kelimesini doğru yaz, gerisine ulaşma.
+  const ref = Array.from({ length: 300 }, (_, i) => 'kelime' + i).join(' ');
+  const yazi = ['kelime0', 'kelime1', 'kelime2', 'kelime3', 'kelime4'].join(' ');
+  const r = degerlendir(ref, yazi, { kesildi: true });
+  esit('kuyruk atlanan sayılmaz (atlanan=0)', r.atlananKelime, 0);
+  esit('kuyruk yüzünden başarısız DEĞİL', r.basarili, true);
+  esit('ulaşılan referans = 5', r.ulasilanReferans, 5);
+}
+
+console.log('\n[Geçersizlik kapısı: 22+ atlanan (ortada atlayıp devam) => başarısız]');
+{
+  const ref = Array.from({ length: 100 }, (_, i) => 'kelime' + i).join(' ');
+  // kelime0..4 yaz, 22 kelime (5..26) atla, sonra kelime27..66'yı doğru yaz (40 eşleşme)
+  const yazilanlar = [];
+  for (let i = 0; i <= 4; i++) yazilanlar.push('kelime' + i);
+  for (let i = 27; i <= 66; i++) yazilanlar.push('kelime' + i);
+  const r = degerlendir(ref, yazilanlar.join(' '), { kesildi: true });
   esit('atlanan >= 22', r.atlananKelime >= 22, true);
   esit('başarısız (atlama kapısı)', r.basarili, false);
   esit('neden = atlanan_kelime', r.basarisizlikNedeni, 'atlanan_kelime');
