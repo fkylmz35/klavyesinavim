@@ -17,6 +17,7 @@ let kalanSaniye = SINAV_SURESI;
 let sayacId = null;
 let baslangicZamani = 0;
 let ayarlar = ayarlariOku();
+let secilenMetinId = null;  // null => rastgele; aksi halde belirli metin
 
 // --- Süre ayarı (mod) --------------------------------------------------------
 function seciliSure() {
@@ -33,7 +34,11 @@ function ddss(saniye) {
 
 // --- Sınavı başlat -----------------------------------------------------------
 function baslat() {
-  aktifMetin = rastgeleMetin(aktifMetin?.id);
+  if (secilenMetinId) {
+    aktifMetin = METINLER.find(m => m.id === secilenMetinId) || rastgeleMetin();
+  } else {
+    aktifMetin = rastgeleMetin(aktifMetin?.id);
+  }
   kalanSaniye = seciliSure();
   durum = 'calisiyor';
   baslangicZamani = Date.now();
@@ -174,17 +179,67 @@ function kur() {
     if (e.key === 'Escape' && durum === 'calisiyor') bitir(false);
   });
 
-  // Ayar: renklendirme + tema
-  const renkChk = $('#renkChk');
-  if (renkChk) {
-    renkChk.checked = ayarlar.renklendirme;
-    renkChk.addEventListener('change', () => {
-      ayarlar.renklendirme = renkChk.checked; ayarlariYaz(ayarlar);
-      $('#yazmaAlani').classList.toggle('renklendir', ayarlar.renklendirme);
+  // Süre modu: seçilen kartı görsel olarak işaretle
+  document.querySelectorAll('.mod input').forEach(r =>
+    r.addEventListener('change', () => {
+      document.querySelectorAll('.mod').forEach(m => m.classList.remove('aktif-mod'));
+      r.closest('.mod').classList.add('aktif-mod');
+    }));
+
+  // Klavye seçimi kartları
+  document.querySelectorAll('.secim-kart[data-klavye]').forEach(k => {
+    if (k.dataset.klavye === ayarlar.klavye) k.classList.add('aktif');
+    k.addEventListener('click', () => {
+      document.querySelectorAll('.secim-kart[data-klavye]').forEach(x => x.classList.remove('aktif'));
+      k.classList.add('aktif');
+      ayarlar.klavye = k.dataset.klavye; ayarlariYaz(ayarlar);
     });
-  }
+  });
+
+  // Metin seçimi (rastgele / belirli)
+  metinGridDoldur();
+  document.querySelectorAll('.metin-mod-btn').forEach(b =>
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.metin-mod-btn').forEach(x => x.classList.remove('aktif'));
+      b.classList.add('aktif');
+      const sec = b.dataset.mm === 'sec';
+      $('#metinGrid').hidden = !sec;
+      if (!sec) { secilenMetinId = null; metinSeciliGuncelle(); temizleGridSecim(); }
+    }));
 
   ozetGoster();
+}
+
+// Metin kartları ızgarasını doldur
+function metinGridDoldur() {
+  const grid = $('#metinGrid');
+  if (!grid || typeof METINLER === 'undefined') return;
+  grid.innerHTML = METINLER.map((m, i) => {
+    const onizleme = m.metin.split(' ').slice(0, 8).join(' ');
+    return `<button type="button" class="metin-kart" data-id="${kacir(m.id)}">
+      <span class="mk-no">${i + 1}</span>
+      <span class="mk-onizleme">${kacir(onizleme)}…</span>
+      <span class="mk-kelime">${m.kelime || m.metin.split(' ').length} kelime</span>
+    </button>`;
+  }).join('');
+  grid.querySelectorAll('.metin-kart').forEach(k =>
+    k.addEventListener('click', () => {
+      temizleGridSecim();
+      k.classList.add('secili');
+      secilenMetinId = k.dataset.id;
+      metinSeciliGuncelle();
+    }));
+}
+function temizleGridSecim() {
+  document.querySelectorAll('.metin-kart.secili').forEach(x => x.classList.remove('secili'));
+}
+function metinSeciliGuncelle() {
+  const p = $('#metinSecili');
+  if (!p) return;
+  if (!secilenMetinId) { p.textContent = 'Her başlangıçta rastgele bir resmî metin gelir.'; return; }
+  const m = METINLER.find(x => x.id === secilenMetinId);
+  const no = METINLER.indexOf(m) + 1;
+  p.innerHTML = `Seçildi: <strong>Metin ${no}</strong> — “${kacir(m.metin.split(' ').slice(0, 6).join(' '))}…”`;
 }
 
 // Küçük özet: en iyi skor / deneme sayısı

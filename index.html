@@ -24,89 +24,158 @@
     <button id="temaBtn" class="tema-btn" title="Tema değiştir" aria-label="Koyu temaya geç">☾</button>
   </header>
 
-  <main class="govde">
+  <main class="govde app-govde">
+    <div class="app-ana">
 
-    <!-- HAZIR EKRANI -->
-    <section id="hazirEkran" class="ekran hazir">
-      <p class="eyebrow">Adalet Bakanlığı · Uygulamalı Sınav Provası</p>
-      <h1>Gerçek sınav gibi. <span class="vurgu">Üç dakika, tek şans.</span></h1>
-      <p class="alt-baslik">
-        Adalet Bakanlığı zabıt ve icra katipliği klavye sınavının birebir simülasyonu.
-        Resmî değerlendirme kriterleriyle puanlanır: kelime bazlı hata, atlanan kelime
-        ve %25 hata kapısı. Kayıt yok, ücret yok.
-      </p>
+      <!-- HAZIR EKRANI -->
+      <section id="hazirEkran" class="ekran hazir">
+        <p class="eyebrow">Adalet Bakanlığı · Uygulamalı Sınav Provası</p>
+        <h1>Gerçek sınav gibi. <span class="vurgu">Üç dakika, tek şans.</span></h1>
+        <p class="alt-baslik">
+          Adalet Bakanlığı zabıt ve icra katipliği klavye sınavının birebir simülasyonu.
+          Resmî değerlendirme kriterleriyle puanlanır. Kayıt yok, ücret yok.
+        </p>
 
-      <div class="ozet-kutu" id="ozet">Henüz deneme yok. İlk sınavını başlat!</div>
+        <div class="ozet-kutu" id="ozet">Henüz deneme yok. İlk sınavını başlat!</div>
 
-      <div class="mod-secim" role="group" aria-label="Süre modu">
-        <label class="mod aktif-mod">
-          <input type="radio" name="mod" value="sinav" checked />
-          <span class="mod-ad">Sınav Modu</span><span class="mod-detay">180 sn · resmî</span>
-        </label>
-        <label class="mod">
-          <input type="radio" name="mod" value="60" />
-          <span class="mod-ad">Isınma</span><span class="mod-detay">60 sn</span>
-        </label>
-        <label class="mod">
-          <input type="radio" name="mod" value="120" />
-          <span class="mod-ad">Kısa Pratik</span><span class="mod-detay">120 sn</span>
-        </label>
-        <label class="mod">
-          <input type="radio" name="mod" value="300" />
-          <span class="mod-ad">Dayanıklılık</span><span class="mod-detay">300 sn</span>
-        </label>
-      </div>
-
-      <button id="baslatBtn" class="btn birincil buyuk">Sınavı Başlat <kbd>Enter</kbd></button>
-
-      <ul class="kural-ozet">
-        <li><b>Metin gizli:</b> Başlat’a basınca gelir — gerçek sınavdaki gibi önceden göremezsin.</li>
-        <li><b>Küçük harf, noktalama yok.</b> Metne sadık kal; nokta, virgül, rakam ekleme.</li>
-        <li><b>Silme serbest.</b> Süre bitince yazım alanı otomatik kilitlenir.</li>
-      </ul>
-    </section>
-
-    <!-- SINAV EKRANI -->
-    <section id="sinavEkran" class="ekran sinav" hidden>
-      <div class="sinav-ust">
-        <div class="sayac-kutu">
-          <span class="sayac-etiket">Kalan Süre</span>
-          <span id="sayac" class="sayac">3:00</span>
-        </div>
-        <div class="canli-kutu">
-          <span class="canli-etiket">Yazılan Kelime</span>
-          <span id="canliKelime" class="canli">0</span>
-        </div>
-        <button id="bitirBtn" class="btn ikincil">Bitir <kbd>Esc</kbd></button>
-      </div>
-
-      <div id="metinAlani" class="metin-alani" aria-label="Yazılacak metin"></div>
-
-      <textarea id="yazmaAlani" class="yazma-alani" spellcheck="false"
-        autocomplete="off" autocorrect="off" autocapitalize="off"
-        placeholder="Yukarıdaki metni buraya yaz…"></textarea>
-      <p class="ipucu">İpucu: Metne birebir sadık kal. Yapıştırma kapalıdır.</p>
-    </section>
-
-    <!-- SONUÇ EKRANI -->
-    <section id="sonucEkran" class="ekran sonuc" hidden>
-      <article class="tutanak-kart">
-        <header class="tutanak-baslik">
-          <div>
-            <p class="kurum">T.C. Adalet Bakanlığı — Prova</p>
-            <h2>Uygulama Sonuç Tutanağı</h2>
+        <!-- 1 · Süre -->
+        <div class="secim-blok">
+          <h3 class="secim-baslik"><span class="secim-no">1</span> Süre modu</h3>
+          <div class="mod-secim" role="group" aria-label="Süre modu">
+            <label class="mod aktif-mod">
+              <input type="radio" name="mod" value="sinav" checked />
+              <span class="mod-ad">Sınav</span><span class="mod-detay">180 sn · resmî</span>
+            </label>
+            <label class="mod">
+              <input type="radio" name="mod" value="60" />
+              <span class="mod-ad">Isınma</span><span class="mod-detay">60 sn</span>
+            </label>
+            <label class="mod">
+              <input type="radio" name="mod" value="120" />
+              <span class="mod-ad">Kısa</span><span class="mod-detay">120 sn</span>
+            </label>
+            <label class="mod">
+              <input type="radio" name="mod" value="300" />
+              <span class="mod-ad">Dayanıklılık</span><span class="mod-detay">300 sn</span>
+            </label>
           </div>
-          <div id="sonucRozet" class="rozet">—</div>
-        </header>
-        <p id="sonucAciklama" class="sonuc-aciklama"></p>
-        <div id="tutanak" class="tutanak-govde"></div>
-        <div id="hataDokum" class="hata-dokum"></div>
-        <div class="sonuc-butonlar">
-          <button id="tekrarBtn" class="btn birincil">Tekrar Dene <kbd>Enter</kbd></button>
-          <button id="yeniBtn" class="btn ikincil">Ana Ekran</button>
         </div>
-      </article>
-    </section>
+
+        <!-- 2 · Klavye -->
+        <div class="secim-blok">
+          <h3 class="secim-baslik"><span class="secim-no">2</span> Klavye düzenin</h3>
+          <div class="klavye-secim" role="group" aria-label="Klavye düzeni">
+            <button type="button" class="secim-kart" data-klavye="q">
+              <span class="sk-ad">Q Klavye</span><span class="sk-detay">En yaygın</span>
+            </button>
+            <button type="button" class="secim-kart" data-klavye="f">
+              <span class="sk-ad">F Klavye</span><span class="sk-detay">Resmî · hızlı</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 3 · Metin -->
+        <div class="secim-blok">
+          <h3 class="secim-baslik"><span class="secim-no">3</span> Metin seçimi</h3>
+          <div class="metin-mod" role="group" aria-label="Metin seçimi">
+            <button type="button" class="metin-mod-btn aktif" data-mm="rastgele">🎲 Rastgele</button>
+            <button type="button" class="metin-mod-btn" data-mm="sec">📄 Metin seç</button>
+          </div>
+          <p class="metin-secili" id="metinSecili">Her başlangıçta rastgele bir resmî metin gelir.</p>
+          <div id="metinGrid" class="metin-grid" hidden></div>
+        </div>
+
+        <button id="baslatBtn" class="btn birincil buyuk">Sınavı Başlat <kbd>Enter</kbd></button>
+
+        <ul class="kural-ozet">
+          <li><b>Metin gizli:</b> Başlat’a basınca gelir — gerçek sınavdaki gibi önceden göremezsin.</li>
+          <li><b>Küçük harf, noktalama yok.</b> Metne sadık kal; nokta, virgül, rakam ekleme.</li>
+          <li><b>Silme serbest.</b> Süre bitince yazım alanı otomatik kilitlenir.</li>
+        </ul>
+      </section>
+
+      <!-- SINAV EKRANI -->
+      <section id="sinavEkran" class="ekran sinav" hidden>
+        <div class="sinav-ust">
+          <div class="sayac-kutu">
+            <span class="sayac-etiket">Kalan Süre</span>
+            <span id="sayac" class="sayac">3:00</span>
+          </div>
+          <div class="canli-kutu">
+            <span class="canli-etiket">Yazılan Kelime</span>
+            <span id="canliKelime" class="canli">0</span>
+          </div>
+          <button id="bitirBtn" class="btn ikincil">Bitir <kbd>Esc</kbd></button>
+        </div>
+
+        <div id="metinAlani" class="metin-alani" aria-label="Yazılacak metin"></div>
+
+        <textarea id="yazmaAlani" class="yazma-alani" spellcheck="false"
+          autocomplete="off" autocorrect="off" autocapitalize="off"
+          placeholder="Yukarıdaki metni buraya yaz…"></textarea>
+        <p class="ipucu">İpucu: Metne birebir sadık kal. Yapıştırma kapalıdır.</p>
+      </section>
+
+      <!-- SONUÇ EKRANI -->
+      <section id="sonucEkran" class="ekran sonuc" hidden>
+        <article class="tutanak-kart">
+          <header class="tutanak-baslik">
+            <div>
+              <p class="kurum">T.C. Adalet Bakanlığı — Prova</p>
+              <h2>Uygulama Sonuç Tutanağı</h2>
+            </div>
+            <div id="sonucRozet" class="rozet">—</div>
+          </header>
+          <p id="sonucAciklama" class="sonuc-aciklama"></p>
+          <div id="tutanak" class="tutanak-govde"></div>
+          <div id="hataDokum" class="hata-dokum"></div>
+          <div class="sonuc-butonlar">
+            <button id="tekrarBtn" class="btn birincil">Tekrar Dene <kbd>Enter</kbd></button>
+            <button id="yeniBtn" class="btn ikincil">Ana Ekran</button>
+          </div>
+        </article>
+      </section>
+
+    </div><!-- /app-ana -->
+
+    <!-- SAĞ YARDIMCI RAY -->
+    <aside class="app-rail" aria-label="Yardımcı kartlar">
+      <h4 class="rail-baslik">Hızlı yardımcılar</h4>
+      <div class="rail-grid">
+        <a href="kurallar.html" class="rail-kart link">
+          <span class="rk-ikon">§</span><span class="rk-ad">Kurallar</span>
+          <span class="rk-alt">Resmî kriterler</span>
+        </a>
+        <a href="tuyolar.html" class="rail-kart link">
+          <span class="rk-ikon">⌨</span><span class="rk-ad">Tüyolar</span>
+          <span class="rk-alt">F/Q parmak</span>
+        </a>
+        <div class="rail-kart">
+          <span class="rk-ikon">🎯</span><span class="rk-ad">Doğruluk</span>
+          <span class="rk-alt">hızdan önce</span>
+        </div>
+        <div class="rail-kart">
+          <span class="rk-ikon">aA</span><span class="rk-ad">Küçük harf</span>
+          <span class="rk-alt">noktalama yok</span>
+        </div>
+        <div class="rail-kart">
+          <span class="rk-ikon">␣</span><span class="rk-ad">Boşluk</span>
+          <span class="rk-alt">net vur</span>
+        </div>
+        <div class="rail-kart">
+          <span class="rk-ikon">%25</span><span class="rk-ad">Hata sınırı</span>
+          <span class="rk-alt">aşarsan kalır</span>
+        </div>
+        <div class="rail-kart">
+          <span class="rk-ikon">⏱</span><span class="rk-ad">Son kelime</span>
+          <span class="rk-alt">serbest</span>
+        </div>
+        <div class="rail-kart">
+          <span class="rk-ikon">22</span><span class="rk-ad">Atlama</span>
+          <span class="rk-alt">22+ = kalır</span>
+        </div>
+      </div>
+    </aside>
 
   </main>
 
@@ -118,14 +187,6 @@
   <script src="js/texts.js"></script>
   <script src="js/storage.js"></script>
   <script src="js/exam.js"></script>
-  <script>
-    kur();
-    // Mod seçiminde görsel aktiflik
-    document.querySelectorAll('.mod input').forEach(r =>
-      r.addEventListener('change', () => {
-        document.querySelectorAll('.mod').forEach(m => m.classList.remove('aktif-mod'));
-        r.closest('.mod').classList.add('aktif-mod');
-      }));
-  </script>
+  <script>kur();</script>
 </body>
 </html>
