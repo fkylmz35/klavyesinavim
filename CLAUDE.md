@@ -77,7 +77,7 @@ Adalet Bakanlığı Memur Sınav, Atama ve Nakil Yönetmeliği md. 6/6.
 Bu klavye sınavı SADECE zabıt katipliğine özel değil. Aynı sistem (Onparmak Klavye Programı,
 3 dk, kelime bazlı, 22 atlama / %25 hata) Adalet Bakanlığı'nın **zabıt kâtibi, icra kâtibi ve
 görevde yükselme** sınavlarında kullanılıyor. UI metinleri "zabıt ve icra katipliği" der.
-Marka geçici olarak **KatipSınav** (ikisini de kapsar).
+Marka geçici olarak **Klavye Sınavım** (ikisini de kapsar).
 
 ## Durum (2026-07-24)
 - MVP tamam ve tarayıcıda doğrulandı: Sınav, Kurallar, Tüyolar (interaktif Q/F klavye), İstatistik.

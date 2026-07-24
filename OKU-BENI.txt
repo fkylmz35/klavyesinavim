@@ -1,4 +1,4 @@
-KatipSınav — Zabıt & İcra Katipliği Klavye Sınavı Simülatörü
+Klavye Sınavım — Zabıt & İcra Katipliği Klavye Sınavı Simülatörü
 ============================================================
 
 NASIL AÇILIR (kurulum gerekmez)
