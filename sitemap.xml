@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Yayına alırken katipsinav.local yerine gerçek alan adını yaz. -->
+<!-- Yayına alırken klavyesinavim.vercel.app yerine gerçek alan adını yaz. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://katipsinav.local/</loc>
+    <loc>https://klavyesinavim.vercel.app/</loc>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://katipsinav.local/sinav.html</loc>
+    <loc>https://klavyesinavim.vercel.app/sinav.html</loc>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://katipsinav.local/kurallar.html</loc>
+    <loc>https://klavyesinavim.vercel.app/kurallar.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://katipsinav.local/tuyolar.html</loc>
+    <loc>https://klavyesinavim.vercel.app/tuyolar.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://katipsinav.local/istatistik.html</loc>
+    <loc>https://klavyesinavim.vercel.app/istatistik.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.4</priority>
   </url>

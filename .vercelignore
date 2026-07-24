@@ -1,0 +1,10 @@
+# Yayında sunulmayacak geliştirici / dahili dosyalar
+server.mjs
+tests/
+_headers
+CLAUDE.md
+PLAN.md
+OKU-BENI.txt
+.claude/
+node_modules/
+*.log
