@@ -2,9 +2,10 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316233A'/%3E%3Ctext x='16' y='24' font-size='23' text-anchor='middle' fill='%23FBFAF6' font-family='Georgia,serif' font-weight='bold'%3E%C2%A7%3C/text%3E%3C/svg%3E" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zabıt Katibi Klavye Sınavı Simülatörü — Ücretsiz Deneme</title>
-  <meta name="description" content="Adalet Bakanlığı zabıt katibi uygulamalı (klavye) sınavına birebir benzeyen ücretsiz, kayıtsız simülasyon. 3 dakika, resmî puanlama." />
+  <title>Zabıt & İcra Katipliği Klavye Sınavı Simülatörü — Ücretsiz</title>
+  <meta name="description" content="Adalet Bakanlığı zabıt ve icra katipliği uygulamalı (klavye) sınavına birebir benzeyen ücretsiz, kayıtsız simülasyon. 3 dakika, resmî puanlama." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -28,9 +29,9 @@
       <p class="eyebrow">Adalet Bakanlığı · Uygulamalı Sınav Provası</p>
       <h1>Gerçek sınav gibi. <span class="vurgu">Üç dakika, tek şans.</span></h1>
       <p class="alt-baslik">
-        Zabıt katibi klavye sınavının birebir simülasyonu. Resmî değerlendirme
-        kriterleriyle puanlanır: kelime bazlı hata, atlanan kelime ve %25 hata kapısı.
-        Kayıt yok, ücret yok.
+        Adalet Bakanlığı zabıt ve icra katipliği klavye sınavının birebir simülasyonu.
+        Resmî değerlendirme kriterleriyle puanlanır: kelime bazlı hata, atlanan kelime
+        ve %25 hata kapısı. Kayıt yok, ücret yok.
       </p>
 
       <div class="ozet-kutu" id="ozet">Henüz deneme yok. İlk sınavını başlat!</div>
@@ -111,8 +112,11 @@
     <p>Bağımsız bir çalışma aracıdır; Adalet Bakanlığı’nın resmî sitesi değildir. Ücretsiz ve kayıtsız.</p>
   </footer>
 
-  <script type="module">
-    import { kur } from './js/exam.js';
+  <script src="js/engine.js"></script>
+  <script src="js/texts.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/exam.js"></script>
+  <script>
     kur();
     // Mod seçiminde görsel aktiflik
     document.querySelectorAll('.mod input').forEach(r =>

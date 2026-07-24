@@ -1,0 +1,26 @@
+KatipSınav — Zabıt & İcra Katipliği Klavye Sınavı Simülatörü
+============================================================
+
+NASIL AÇILIR (kurulum gerekmez)
+-------------------------------
+"index.html" dosyasına çift tıkla. Tarayıcıda (Chrome/Edge/Firefox) açılır.
+Kayıt yok, internet gerekmez, ücretsiz.
+
+SAYFALAR
+--------
+- Sınav      : Gerçek sınav gibi 3 dakikalık deneme, tutanak sonucu.
+- Kurallar   : Resmî değerlendirme kriterleri, sade anlatım.
+- Tüyolar    : F/Q klavye parmak yerleşimi (tuşa basınca ekranda yanar).
+- İstatistik : Denemelerinin geçmişi ve gelişim grafiği (bu tarayıcıda saklanır).
+
+NOTLAR
+------
+- Sonuçlar sadece senin tarayıcında saklanır; hiçbir yere gönderilmez.
+- Gerçek sınav kriterlerine göre puanlar: 3 dakika, kelime bazlı hata,
+  22+ atlanan kelime veya %25+ hata = başarısız.
+- Fiziksel klavye önerilir (telefonda çalışmaz gibi düşün).
+
+GELİŞTİRİCİ NOTU
+----------------
+- Yerel sunucu (opsiyonel): node server.mjs  ->  http://localhost:8080
+- Puanlama motoru testleri:  node tests/engine.test.mjs

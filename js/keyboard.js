@@ -3,7 +3,7 @@
 // konumu verdiği için Q veya F seçili olması fark etmez; basılan tuş doğru yanar.
 
 // Parmak kodları ve renkleri
-export const PARMAKLAR = {
+const PARMAKLAR = {
   ssol: { ad: 'Sol serçe',  renk: '#6b8cae' },
   ysol: { ad: 'Sol yüzük',  renk: '#5fa8a0' },
   osol: { ad: 'Sol orta',   renk: '#86b06a' },
@@ -41,7 +41,7 @@ const SIRALAR = [
 const DINLENME = { q: ['KeyA','KeyS','KeyD','KeyF','KeyJ','KeyK','KeyL','Semicolon'],
                    f: ['KeyA','KeyS','KeyD','KeyF','KeyJ','KeyK','KeyL','Semicolon'] };
 
-export function klavyeCiz(kapsayici, duzen = 'q') {
+function klavyeCiz(kapsayici, duzen = 'q') {
   kapsayici.innerHTML = '';
   kapsayici.dataset.duzen = duzen;
   SIRALAR.forEach((sira, si) => {
@@ -72,7 +72,7 @@ export function klavyeCiz(kapsayici, duzen = 'q') {
 }
 
 // Canlı vurgu: fiziksel tuşa basınca ekranda yak
-export function canliVurgu(kapsayici) {
+function canliVurgu(kapsayici) {
   const yak = (code, on) => {
     const t = kapsayici.querySelector(`.kb-tus[data-code="${CSS.escape(code)}"]`);
     if (t) t.classList.toggle('kb-aktif', on);

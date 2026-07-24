@@ -6,7 +6,7 @@
 // Sınav akışından (süre, arayüz) tamamen bağımsızdır: sadece metin karşılaştırır.
 
 // ---- Ayarlanabilir eşikler (resmi kriterler) --------------------------------
-export const VARSAYILAN_AYAR = {
+const VARSAYILAN_AYAR = {
   atlananSiniri: 22,        // toplam 22+ atlanan kelime => başarısız
   hataOraniSiniri: 0.25,    // yanlış/toplam yazılan > %25 => anlam bütünlüğü yok => başarısız
   // Not: Resmî kriterlerde sabit "en az 90 net kelime" eşiği YOKTUR; başarı iki kapı
@@ -16,18 +16,18 @@ export const VARSAYILAN_AYAR = {
 };
 
 // ---- Türkçe'ye duyarlı yardımcılar ------------------------------------------
-export function trLower(s) {
+function trLower(s) {
   return String(s).replace(/İ/g, 'i').replace(/I/g, 'ı').toLocaleLowerCase('tr');
 }
 
 // Metni kelimelere böler (boşluk/sekme/satır sonu). Boş parçaları atar.
-export function splitWords(text) {
+function splitWords(text) {
   return String(text).replace(/[\t\r\n]+/g, ' ').trim().split(/ +/).filter(Boolean);
 }
 
 // Yazılan ham metni kelimelere böler VE fazla boşluk hatalarını sayar.
 // Art arda 2+ boşluk bırakılan her blok = 1 fazla boşluk hatası.
-export function tokenizeTyped(raw) {
+function tokenizeTyped(raw) {
   const spaced = String(raw).replace(/[\t\r\n]+/g, ' ');
   const runs = spaced.match(/ {2,}/g);
   const fazlaBosluk = runs ? runs.length : 0;
@@ -63,7 +63,7 @@ function altDizi(kisa, uzun) {
 }
 
 // 1-1 eşleşen (yanlış) kelimede hata TÜRÜNÜ etiketle (sayıyı etkilemez, geri bildirim için).
-export function hataTuru(t, r) {
+function hataTuru(t, r) {
   if (t === r) return null;
   const nonLetter = /[^\p{L}]/u;
   if (t.length === r.length) {
@@ -174,7 +174,7 @@ function hizala(T, R) {
 // referansMetin: verilen metin (küçük harf, noktalamasız)
 // yazilanMetin : adayın yazdığı ham metin
 // secenek.kesildi: süre bitiminde yazım kesildiyse true (eksik son kelime kuralı için)
-export function degerlendir(referansMetin, yazilanMetin, secenek = {}) {
+function degerlendir(referansMetin, yazilanMetin, secenek = {}) {
   const ayar = { ...VARSAYILAN_AYAR, ...(secenek.ayar || {}) };
   const R = splitWords(referansMetin);
   const { tokens: T, fazlaBosluk } = tokenizeTyped(yazilanMetin);
@@ -253,4 +253,9 @@ export function degerlendir(referansMetin, yazilanMetin, secenek = {}) {
       : hedefKapisi ? 'net_kelime_hedefi' : null,
     hataListesi,
   };
+}
+
+// Node (test) uyumluluğu — tarayıcıda `module` tanımsız olduğu için atlanır.
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { degerlendir, splitWords, tokenizeTyped, trLower, hataTuru, VARSAYILAN_AYAR };
 }

@@ -1,5 +1,5 @@
 // stats.js — Geçmiş denemeler: özet, trend grafiği (canvas), tablo
-import { gecmisOku, gecmisiTemizle } from './storage.js';
+// Klasik script olarak yüklenir; storage.js önce yüklenmeli.
 
 const $ = (s) => document.querySelector(s);
 
@@ -57,7 +57,7 @@ function grafikCiz(canvas, veriler) {
   veriler.forEach((v, i) => { ctx.beginPath(); ctx.arc(x(i), y(v), 3.5, 0, 7); ctx.fill(); });
 }
 
-export function kur() {
+function kur() {
   const g = gecmisOku();
 
   // Özet kartları

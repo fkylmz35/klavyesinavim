@@ -2,7 +2,7 @@
 const GECMIS_ANAHTAR = 'kks_gecmis_v1';
 const AYAR_ANAHTAR = 'kks_ayarlar_v1';
 
-export const varsayilanAyarlar = {
+const varsayilanAyarlar = {
   klavye: 'q',            // 'f' | 'q'
   tema: 'acik',           // 'acik' | 'koyu'
   renklendirme: false,    // gerçek sınav modunda kapalı
@@ -10,25 +10,25 @@ export const varsayilanAyarlar = {
   yapistirmaEngeli: true,
 };
 
-export function ayarlariOku() {
+function ayarlariOku() {
   try {
     const ham = localStorage.getItem(AYAR_ANAHTAR);
     return ham ? { ...varsayilanAyarlar, ...JSON.parse(ham) } : { ...varsayilanAyarlar };
   } catch { return { ...varsayilanAyarlar }; }
 }
 
-export function ayarlariYaz(ayarlar) {
+function ayarlariYaz(ayarlar) {
   try { localStorage.setItem(AYAR_ANAHTAR, JSON.stringify(ayarlar)); } catch {}
 }
 
-export function gecmisOku() {
+function gecmisOku() {
   try {
     const ham = localStorage.getItem(GECMIS_ANAHTAR);
     return ham ? JSON.parse(ham) : [];
   } catch { return []; }
 }
 
-export function denemeEkle(kayit) {
+function denemeEkle(kayit) {
   const gecmis = gecmisOku();
   gecmis.push(kayit);
   // Son 200 denemeyi tut
@@ -37,6 +37,6 @@ export function denemeEkle(kayit) {
   return kirpik;
 }
 
-export function gecmisiTemizle() {
+function gecmisiTemizle() {
   try { localStorage.removeItem(GECMIS_ANAHTAR); } catch {}
 }

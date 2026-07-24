@@ -1,6 +1,6 @@
 // texts.js — Metin havuzu (ES modülü olarak; file:// ile de sorunsuz çalışır)
 // Tamamı küçük harf, noktalama ve paragraf yok — resmî sınav biçimine uygun.
-export const METINLER = [
+const METINLER = [
   {
     id: 'adalet-01', kategori: 'resmi', uzunluk: 'orta',
     metin: 'adalet mülkün temelidir ve bir toplumun huzuru ancak hukukun herkese eşit uygulanmasıyla sağlanabilir mahkemeler önünde herkes eşittir hiçbir kimseye ırkı dili dini ya da düşüncesi sebebiyle ayrıcalık tanınamaz zabıt katibi duruşma sırasında söylenenleri eksiksiz ve doğru biçimde kayda geçirmekle görevlidir bu görev büyük bir dikkat ve sorumluluk gerektirir çünkü tutanaklar davanın seyrini belirleyen en önemli belgelerdir',
@@ -23,7 +23,7 @@ export const METINLER = [
   },
 ];
 
-export function rastgeleMetin(oncekiId = null) {
+function rastgeleMetin(oncekiId = null) {
   const havuz = METINLER.length > 1 && oncekiId
     ? METINLER.filter(m => m.id !== oncekiId)
     : METINLER;

@@ -1,6 +1,7 @@
 // Puanlama motoru testleri — resmi PGM örnekleriyle doğrulama.
 // Çalıştır:  node tests/engine.test.mjs
-import { degerlendir, tokenizeTyped } from '../js/engine.js';
+import pkg from '../js/engine.js';
+const { degerlendir, tokenizeTyped } = pkg;
 
 let gecti = 0, kaldi = 0;
 function esit(ad, bulunan, beklenen) {

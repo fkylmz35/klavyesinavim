@@ -1,7 +1,5 @@
 // exam.js — Sınav akışı: süre, girdi kilidi, canlı sayaç, sonuç tutanağı
-import { degerlendir, splitWords } from './engine.js';
-import { rastgeleMetin } from './texts.js';
-import { ayarlariOku, ayarlariYaz, denemeEkle, gecmisOku } from './storage.js';
+// Klasik script olarak yüklenir; engine.js, texts.js, storage.js önce yüklenmeli.
 
 const SINAV_SURESI = 180; // saniye (resmî: 3 dakika)
 
@@ -152,7 +150,7 @@ function ekranDurumu(d) {
 }
 
 // --- Kurulum -----------------------------------------------------------------
-export function kur() {
+function kur() {
   ekranDurumu('hazir');
 
   $('#baslatBtn').addEventListener('click', baslat);

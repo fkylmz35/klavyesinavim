@@ -73,7 +73,24 @@ Adalet Bakanlığı Memur Sınav, Atama ve Nakil Yönetmeliği md. 6/6.
 - **Teknik temel:** Sade HTML/CSS/JS, çerçevesiz, sıfır bağımlılık. Backend yok; geçmiş/istatistik
   localStorage'da. Barındırma: statik (GitHub Pages / Netlify / Vercel — bedava). ✔
 
+## Kapsam Notu (önemli)
+Bu klavye sınavı SADECE zabıt katipliğine özel değil. Aynı sistem (Onparmak Klavye Programı,
+3 dk, kelime bazlı, 22 atlama / %25 hata) Adalet Bakanlığı'nın **zabıt kâtibi, icra kâtibi ve
+görevde yükselme** sınavlarında kullanılıyor. UI metinleri "zabıt ve icra katipliği" der.
+Marka geçici olarak **KatipSınav** (ikisini de kapsar).
+
+## Durum (2026-07-24)
+- MVP tamam ve tarayıcıda doğrulandı: Sınav, Kurallar, Tüyolar (interaktif Q/F klavye), İstatistik.
+- Puanlama motoru: 34/34 test geçiyor (`node tests/engine.test.mjs`).
+- **Sunucusuz çalışır:** `index.html`'e çift tıkla — ES modül YOK, klasik script'ler + inline metin.
+  (Dev sunucu opsiyonel: `node server.mjs` → localhost:8080.)
+- Yayın: kullanıcı "şimdilik sadece yerel" dedi; deploy YOK.
+
+## Sıradaki (opsiyonel cila)
+Tema değiştirme butonu, ses efektleri, sınavda canlı renklendirme aç/kapa, ısınma turu vurgusu,
+resmî ZIP metinlerini havuza ekleme. Sonra istenirse deploy (Netlify/GitHub Pages/Vercel).
+
 ## Notlar
-- Kullanıcı Türkçe iletişim kuruyor; tüm UI ve dokümantasyon Türkçe olacak.
+- Kullanıcı Türkçe iletişim kuruyor; tüm UI ve dokümantasyon Türkçe.
 - Kullanıcı çok fazla/uzun araştırma istemiyor; hedefli ve hızlı ilerlenecek.
-- Henüz git repo'su yok; geliştirme başlarken `git init` yapılacak.
+- Git repo'su var; commit'ler Türkçe.
