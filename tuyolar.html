@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Klavye Tüyoları — F ve Q Parmak Yerleşimi — KatipSınav</title>
+  <meta name="description" content="On parmak klavye tekniği, F ve Q düzeninde parmak yerleşimi ve zabıt katibi sınavı için pratik ipuçları." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="ust">
+    <a class="marka" href="index.html">
+      <span class="marka-sim" aria-hidden="true">§</span>
+      <span class="marka-ad">Katip<b>Sınav</b></span>
+    </a>
+    <nav class="menu">
+      <a href="index.html">Sınav</a>
+      <a href="kurallar.html">Kurallar</a>
+      <a href="tuyolar.html" class="aktif">Tüyolar</a>
+      <a href="istatistik.html">İstatistik</a>
+    </nav>
+  </header>
+
+  <main class="govde makale">
+    <p class="eyebrow">On Parmak Tekniği</p>
+    <h1 class="makale-baslik">Parmaklarını doğru tuşa yerleştir</h1>
+    <p class="alt-baslik">
+      Hız, parmakların doğru bölgeyi ezberlemesiyle gelir. Aşağıdaki klavyede her renk
+      bir parmağa aittir. <b>Fiziksel klavyende bir tuşa bas — ekrandaki karşılığı yanar.</b>
+      Bakmadan yazmayı böyle çalış.
+    </p>
+
+    <div class="kb-kontrol">
+      <div class="kb-secim" role="group" aria-label="Klavye düzeni">
+        <button class="kb-btn aktif" data-duzen="q">Q Klavye</button>
+        <button class="kb-btn" data-duzen="f">F Klavye</button>
+      </div>
+      <p class="kb-ipucu" id="kbIpucu"></p>
+    </div>
+
+    <div id="klavye" class="klavye" aria-hidden="true"></div>
+
+    <div id="parmakLejant" class="parmak-lejant"></div>
+
+    <h2>Temel kurallar</h2>
+    <ul class="madde">
+      <li><b>Dinlenme sırası (home row):</b> Parmakların çıkıntılı iki tuşu (Q’da <code>a</code> ve <code>k</code> civarı) hisseder ve hep oraya döner.</li>
+      <li><b>Baş parmaklar</b> yalnızca boşluk çubuğunu kullanır.</li>
+      <li><b>Her tuş kendi parmağının işi.</b> Yakındaki parmakla “kestirmeden” basma; ezber bozulur.</li>
+      <li><b>Ekrana değil metne bak.</b> Klavyeye bakmadan yazmak hızın ön koşuludur.</li>
+    </ul>
+
+    <h2>Sınava özel ipuçları</h2>
+    <ul class="madde">
+      <li><b>Küçük harf ve noktalama yok.</b> Shift ve noktalama tuşlarına hiç uzanmayacaksın — bu ritmi bozan hareketleri baştan kafandan çıkar.</li>
+      <li><b>Doğruluk hızdan önce gelir.</b> %25 hata kapısı ve kelime bazlı ceza yüzünden, yavaş ama temiz yazmak çoğu zaman daha çok net kelime kazandırır.</li>
+      <li><b>Boşluğu net vur.</b> Kelime birleştirme ve fazla boşluk ikisi de hata; ritmi boşlukla oturt.</li>
+      <li><b>Son kelimeye takılma.</b> Süre biterken yarım kalan son kelime hata sayılmaz; akışı bozma.</li>
+      <li><b>İki günde bir değil, her gün az.</b> 3’er dakikalık düzenli tekrar, uzun seyrek çalışmadan iyidir.</li>
+    </ul>
+
+    <div class="cta-satir">
+      <a href="index.html" class="btn birincil buyuk">Öğrendiklerini sınavda dene</a>
+    </div>
+  </main>
+
+  <footer class="dip">
+    <p>Bağımsız bir çalışma aracıdır; Adalet Bakanlığı’nın resmî sitesi değildir. Ücretsiz ve kayıtsız.</p>
+  </footer>
+
+  <script type="module">
+    import { klavyeCiz, canliVurgu, PARMAKLAR } from './js/keyboard.js';
+    const klavye = document.getElementById('klavye');
+    const ipucu = document.getElementById('kbIpucu');
+    let duzen = 'q';
+
+    function ipucuMetni(d) {
+      return d === 'f'
+        ? 'F klavye: resmî ve uzun vadede daha hızlı kabul edilir; öğrenmesi emek ister.'
+        : 'Q klavye: en yaygın düzen; çoğu aday bununla çalışır.';
+    }
+    function ciz() { klavyeCiz(klavye, duzen); ipucu.textContent = ipucuMetni(duzen); }
+
+    // Parmak lejantı
+    const lejant = document.getElementById('parmakLejant');
+    lejant.innerHTML = Object.values(PARMAKLAR).map(p =>
+      `<span class="lej"><i style="background:${p.renk}"></i>${p.ad}</span>`).join('');
+
+    document.querySelectorAll('.kb-btn').forEach(b =>
+      b.addEventListener('click', () => {
+        document.querySelectorAll('.kb-btn').forEach(x => x.classList.remove('aktif'));
+        b.classList.add('aktif'); duzen = b.dataset.duzen; ciz();
+      }));
+
+    ciz();
+    canliVurgu(klavye);
+  </script>
+</body>
+</html>

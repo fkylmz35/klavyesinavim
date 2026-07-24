@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sınav Kuralları ve Puanlama — KatipSınav</title>
+  <meta name="description" content="Zabıt katibi uygulamalı klavye sınavının resmî kuralları ve kelime bazlı puanlama sistemi — sade anlatım." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="ust">
+    <a class="marka" href="index.html">
+      <span class="marka-sim" aria-hidden="true">§</span>
+      <span class="marka-ad">Katip<b>Sınav</b></span>
+    </a>
+    <nav class="menu">
+      <a href="index.html">Sınav</a>
+      <a href="kurallar.html" class="aktif">Kurallar</a>
+      <a href="tuyolar.html">Tüyolar</a>
+      <a href="istatistik.html">İstatistik</a>
+    </nav>
+  </header>
+
+  <main class="govde makale">
+    <p class="eyebrow">Resmî Kriterler · Sade Anlatım</p>
+    <h1 class="makale-baslik">Sınav nasıl işliyor, nasıl puanlanıyor?</h1>
+    <p class="alt-baslik">
+      Aşağıdakiler Adalet Bakanlığı Personel Genel Müdürlüğü’nün yayımladığı
+      “Zabıt Katibi Uygulamalı Sınav Değerlendirme Kriterleri”ne dayanır.
+      Simülatörün puanlaması da birebir bu kurallara göre çalışır.
+    </p>
+
+    <section class="kutu-grid">
+      <div class="bilgi-kutu"><span class="bk-buyuk">180 sn</span><span class="bk-alt">Süre (3 dakika)</span></div>
+      <div class="bilgi-kutu"><span class="bk-buyuk">Kelime</span><span class="bk-alt">Değerlendirme birimi</span></div>
+      <div class="bilgi-kutu"><span class="bk-buyuk">%25</span><span class="bk-alt">Hata oranı sınırı</span></div>
+      <div class="bilgi-kutu"><span class="bk-buyuk">22</span><span class="bk-alt">Atlama sınırı (kelime)</span></div>
+    </section>
+
+    <h2>Genel işleyiş</h2>
+    <ul class="madde">
+      <li>Sınav, Bilgi İşlem Genel Müdürlüğü’nün geliştirdiği <b>Onparmak Klavye Programı</b> ile yapılır.</li>
+      <li>Metin, sistemin kayıtlı metinleri arasından <b>sınav anında otomatik</b> seçilir; önceden görülemez, basılı çıktı verilmez.</li>
+      <li>Süre <b>3 dakika (180 saniye)</b>’dir.</li>
+      <li>Ekrandaki metnin tamamı <b>küçük harfle</b> yazılmıştır; <b>noktalama ve paragraf yoktur</b>.</li>
+      <li>Aday metne sadık kalır: <b>noktalama, rakam veya metin dışı ibare eklemez</b>.</li>
+      <li>Değerlendirme <b>kelime bazlıdır</b>; vuruş bazlı sonuç yalnızca bilgi amaçlıdır.</li>
+    </ul>
+
+    <h2>Hata türleri — her biri 1 kelime hatası</h2>
+    <p class="not">“adalet” kelimesi örnek alınarak:</p>
+    <div class="hata-tablo">
+      <div class="ht-satir"><b>Fazla vuruş</b><span>harf fazladan yazılır</span><code>adalett</code></div>
+      <div class="ht-satir"><b>Eksik vuruş</b><span>harf eksik yazılır</span><code>adale</code></div>
+      <div class="ht-satir"><b>Harf yer değiştirme</b><span>iki harf yer değiştirir</span><code>adalte</code></div>
+      <div class="ht-satir"><b>Karakter hatası</b><span>harf yerine işaret/rakam</span><code>.dalet</code></div>
+      <div class="ht-satir"><b>Kelime bölme</b><span>kelime parçalara ayrılır</span><code>ada&nbsp;let</code></div>
+      <div class="ht-satir"><b>Kelime birleştirme</b><span>iki kelime bitişir</span><code>adaletbakanlığı</code></div>
+      <div class="ht-satir"><b>Fazla boşluk</b><span>art arda 2+ boşluk</span><code>adalet&nbsp;&nbsp;·</code></div>
+      <div class="ht-satir"><b>Karışık hata</b><span>metin dışı ekleme vb.</span><code>ada2let</code></div>
+    </div>
+    <p class="not">
+      Not: Kelime <b>doğru yazılıp</b> bölünürse 1 hata; <b>yanlış yazılıp</b> bölünürse
+      bölünen her parça 1 hata sayılır (örn. “ada al et” = 3 hata).
+    </p>
+
+    <h2>Özel durumlar</h2>
+    <ul class="madde">
+      <li><b>Eksik son kelime:</b> süre biterken yarım kalan <b>son</b> kelime hata sayılmaz.</li>
+      <li><b>Atlanan kelime:</b> yazılmayan kelime hata sayılmaz — <b>ama toplam 22 ve üzeri</b> kelime atlanırsa, yazılan kelime sayısına bakılmaksızın sınav <b>başarısız</b> olur.</li>
+      <li><b>Anlam bütünlüğü:</b> yanlış kelimelerin toplam yazılan kelimeye oranı <b>%25’i geçerse</b> metin geçersiz sayılır.</li>
+    </ul>
+
+    <div class="uyari-kutu">
+      <b>Sabit “90 kelime” şartı yok.</b> Yaygın söylentinin aksine, resmî kriterlerde herkese
+      dayatılan sabit bir net kelime eşiği bulunmuyor. Başarı; iki geçersizlik kapısı (22 atlama,
+      %25 hata) ve adaylar arası <b>net kelime sıralaması</b> ile belirleniyor. Yine de simülatörde
+      kendine hedef koyabilirsin.
+    </div>
+
+    <div class="cta-satir">
+      <a href="index.html" class="btn birincil buyuk">Hadi denemeye başla</a>
+    </div>
+  </main>
+
+  <footer class="dip">
+    <p>Bağımsız bir çalışma aracıdır; Adalet Bakanlığı’nın resmî sitesi değildir. Ücretsiz ve kayıtsız.</p>
+  </footer>
+</body>
+</html>

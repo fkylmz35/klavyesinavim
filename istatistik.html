@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>İstatistiklerim — KatipSınav</title>
+  <meta name="description" content="Deneme geçmişin, net kelime trendin ve gelişim grafiğin. Tarayıcında saklanır, kayıt gerekmez." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="ust">
+    <a class="marka" href="index.html">
+      <span class="marka-sim" aria-hidden="true">§</span>
+      <span class="marka-ad">Katip<b>Sınav</b></span>
+    </a>
+    <nav class="menu">
+      <a href="index.html">Sınav</a>
+      <a href="kurallar.html">Kurallar</a>
+      <a href="tuyolar.html">Tüyolar</a>
+      <a href="istatistik.html" class="aktif">İstatistik</a>
+    </nav>
+  </header>
+
+  <main class="govde makale">
+    <p class="eyebrow">Gelişimin</p>
+    <h1 class="makale-baslik">İstatistiklerim</h1>
+    <p class="alt-baslik">Tüm denemelerin tarayıcında saklanır — kayıt yok, sunucuya gitmez.</p>
+
+    <div id="bosDurum" class="uyari-kutu" hidden>
+      Henüz hiç deneme yok. <a href="index.html">İlk sınavını başlat</a>, sonuçların burada birikmeye başlasın.
+    </div>
+
+    <div id="icealan">
+      <section id="ozetKartlar" class="kutu-grid"></section>
+
+      <div class="grafik-kutu">
+        <h2>Net kelime trendi <span class="grafik-not">(son 30 deneme)</span></h2>
+        <canvas id="grafik" class="grafik"></canvas>
+      </div>
+
+      <div class="tablo-baslik">
+        <h2>Deneme geçmişi</h2>
+        <button id="temizleBtn" class="btn ikincil kucuk">Geçmişi Temizle</button>
+      </div>
+      <div class="tablo-sar">
+        <table class="tablo">
+          <thead>
+            <tr><th>Tarih</th><th>Net</th><th>Doğru</th><th>Hatalı</th><th>Atlanan</th><th>Oran</th><th>Kelime/dk</th><th>Sonuç</th></tr>
+          </thead>
+          <tbody id="tabloGovde"></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <footer class="dip">
+    <p>Bağımsız bir çalışma aracıdır; Adalet Bakanlığı’nın resmî sitesi değildir. Ücretsiz ve kayıtsız.</p>
+  </footer>
+
+  <script type="module">
+    import { kur } from './js/stats.js';
+    kur();
+  </script>
+</body>
+</html>
