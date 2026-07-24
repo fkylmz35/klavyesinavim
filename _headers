@@ -1,0 +1,8 @@
+# Güvenlik başlıkları (Netlify / Cloudflare Pages formatı).
+# Diğer barındırıcılarda karşılığını sunucu/edge yapılandırmasına ekle.
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: geolocation=(), microphone=(), camera=()

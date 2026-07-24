@@ -2,21 +2,102 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316233A'/%3E%3Ctext x='16' y='24' font-size='23' text-anchor='middle' fill='%23FBFAF6' font-family='Georgia,serif' font-weight='bold'%3E%C2%A7%3C/text%3E%3C/svg%3E" />
+  <meta name="referrer" content="no-referrer" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zabıt & İcra Katipliği Klavye Sınavı Simülatörü — Ücretsiz</title>
-  <meta name="description" content="Adalet Bakanlığı zabıt ve icra katipliği uygulamalı (klavye) sınavına birebir benzeyen ücretsiz, kayıtsız simülasyon. 3 dakika, resmî puanlama." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316233A'/%3E%3Ctext x='16' y='24' font-size='23' text-anchor='middle' fill='%23FBFAF6' font-family='Georgia,serif' font-weight='bold'%3E%C2%A7%3C/text%3E%3C/svg%3E" />
+
+  <title>Katiplik Klavye Sınavı Simülatörü | Zabıt & İcra Kâtibi Provası (Ücretsiz)</title>
+  <meta name="description" content="Adalet Bakanlığı zabıt ve icra kâtipliği klavye (uygulamalı) sınavının ücretsiz, kayıtsız simülatörü. 3 dakika, resmî kelime bazlı puanlama, 30 gerçek metin, prompter ve tam ekran okuma modu." />
+  <meta name="keywords" content="katiplik klavye sınavı, zabıt katibi uygulamalı sınav, icra katibi klavye sınavı, klavye sınavı simülasyonu, onparmak klavye, 3 dakika 90 kelime, adalet bakanlığı klavye sınavı" />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="KatipSınav" />
+  <link rel="canonical" href="https://katipsinav.local/" />
+
+  <!-- Open Graph / sosyal paylaşım -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="KatipSınav" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:title" content="Katiplik Klavye Sınavı Simülatörü — Zabıt & İcra Kâtibi Provası" />
+  <meta property="og:description" content="Gerçek sınav kriterleriyle puanlayan ücretsiz klavye sınavı simülatörü. 3 dakika, 30 gerçek metin, prompter ve tam ekran modu." />
+  <meta property="og:url" content="https://katipsinav.local/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Katiplik Klavye Sınavı Simülatörü" />
+  <meta name="twitter:description" content="Zabıt ve icra kâtipliği klavye sınavının ücretsiz, gerçekçi provası. Resmî puanlama, gerçek metinler." />
+
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/theme.js"></script>
+
+  <!-- Yapısal veri: uygulama + SSS (arama ve cevap motorları için) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "KatipSınav",
+        "url": "https://katipsinav.local/",
+        "applicationCategory": "EducationApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "tr-TR",
+        "description": "Zabıt ve icra kâtipliği klavye (uygulamalı) sınavının ücretsiz, kayıtsız simülatörü. Resmî kelime bazlı puanlama, gerçek metinler, prompter ve tam ekran okuma modu.",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "TRY" },
+        "isAccessibleForFree": true,
+        "featureList": [
+          "3 dakikalık gerçek sınav simülasyonu",
+          "Resmî kelime bazlı puanlama motoru",
+          "30 gerçek uygulama sınavı metni",
+          "F ve Q klavye tüyoları",
+          "Prompter modu ve tam ekran okuma",
+          "Kişisel istatistik ve gelişim grafiği"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Katiplik (zabıt/icra) klavye sınavı kaç dakika sürer?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Uygulamalı sınav süresi 3 dakikadır (180 saniye). Bu süre içinde ekrana gelen metin bilgisayarda yazılır." }
+          },
+          {
+            "@type": "Question",
+            "name": "Klavye sınavında kaç kelime yazmak gerekir, geçme şartı nedir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Resmî değerlendirme kriterlerinde herkese dayatılan sabit bir net kelime eşiği (ör. 90 kelime) yoktur. Başarı iki geçersizlik kapısına bağlıdır: toplam 22 ve üzeri kelime atlanmamalı ve yanlış kelimelerin oranı yüzde 25'i geçmemelidir. Adaylar net kelime sayısına göre sıralanır." }
+          },
+          {
+            "@type": "Question",
+            "name": "Sınav F klavye ile mi Q klavye ile mi yapılır?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Aday kendi çalıştığı klavye düzenini kullanır. Hem F hem Q kabul edilir; F klavye uzun vadede daha hızlı kabul edilse de çoğu aday Q klavye ile çalışır." }
+          },
+          {
+            "@type": "Question",
+            "name": "Sınav metinleri nasıldır ve nereden gelir?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Metinlerin tamamı küçük harfle hazırlanır; noktalama ve paragraf içermez. Bu simülatör, Adalet Bakanlığı Personel Genel Müdürlüğü'nün yayımladığı gerçek uygulama sınavı metinlerini kullanır." }
+          },
+          {
+            "@type": "Question",
+            "name": "Yanlış yazılan kelime nasıl sayılır?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Değerlendirme kelime bazlıdır. Fazla harf, eksik harf, harf yer değiştirme, karakter, kelime bölme, kelime birleştirme ve fazla boşluk gibi hata türlerinin her biri 1 kelime hatası sayılır." }
+          },
+          {
+            "@type": "Question",
+            "name": "Bu site resmî mi, ücretli mi?",
+            "acceptedAnswer": { "@type": "Answer", "text": "KatipSınav bağımsız, ücretsiz ve kayıtsız bir çalışma aracıdır. Adalet Bakanlığı'nın resmî sitesi değildir. Sonuçlar yalnızca tarayıcınızda saklanır." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <header class="ust">
-    <a class="marka" href="index.html">
+    <a class="marka" href="index.html" aria-label="KatipSınav ana sayfa">
       <span class="marka-sim" aria-hidden="true">§</span>
       <span class="marka-ad">Katip<b>Sınav</b></span>
     </a>
-    <nav class="menu">
-      <a href="index.html" class="aktif">Sınav</a>
+    <nav class="menu" aria-label="Ana menü">
+      <a href="sinav.html">Sınav</a>
       <a href="kurallar.html">Kurallar</a>
       <a href="tuyolar.html">Tüyolar</a>
       <a href="istatistik.html">İstatistik</a>
@@ -24,186 +105,145 @@
     <button id="temaBtn" class="tema-btn" title="Tema değiştir" aria-label="Koyu temaya geç">☾</button>
   </header>
 
-  <main class="govde app-govde">
-    <div class="app-ana">
-
-      <!-- HAZIR EKRANI -->
-      <section id="hazirEkran" class="ekran hazir">
-        <p class="eyebrow">Adalet Bakanlığı · Uygulamalı Sınav Provası</p>
-        <h1>Gerçek sınav gibi. <span class="vurgu">Üç dakika, tek şans.</span></h1>
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-metin">
+        <p class="eyebrow">Ücretsiz · Kayıtsız · Gerçek kriterler</p>
+        <h1>Katiplik klavye sınavının <span class="vurgu">gerçek provası.</span></h1>
         <p class="alt-baslik">
-          Adalet Bakanlığı zabıt ve icra katipliği klavye sınavının birebir simülasyonu.
-          Resmî değerlendirme kriterleriyle puanlanır. Kayıt yok, ücret yok.
+          Zabıt ve icra kâtipliği uygulamalı sınavını, sınav salonundaki kurallarla
+          birebir dene. Üç dakika, resmî puanlama, gerçek metinler.
         </p>
-
-        <div class="ozet-kutu" id="ozet">Henüz deneme yok. İlk sınavını başlat!</div>
-
-        <!-- 1 · Süre -->
-        <div class="secim-blok">
-          <h3 class="secim-baslik"><span class="secim-no">1</span> Süre modu</h3>
-          <div class="mod-secim" role="group" aria-label="Süre modu">
-            <label class="mod aktif-mod">
-              <input type="radio" name="mod" value="sinav" checked />
-              <span class="mod-ad">Sınav</span><span class="mod-detay">180 sn · resmî</span>
-            </label>
-            <label class="mod">
-              <input type="radio" name="mod" value="60" />
-              <span class="mod-ad">Isınma</span><span class="mod-detay">60 sn</span>
-            </label>
-            <label class="mod">
-              <input type="radio" name="mod" value="120" />
-              <span class="mod-ad">Kısa</span><span class="mod-detay">120 sn</span>
-            </label>
-            <label class="mod">
-              <input type="radio" name="mod" value="300" />
-              <span class="mod-ad">Dayanıklılık</span><span class="mod-detay">300 sn</span>
-            </label>
-          </div>
+        <div class="hero-cta">
+          <a href="sinav.html" class="btn birincil buyuk">Sınavı Başlat</a>
+          <a href="#nasil-puanlanir" class="btn ikincil buyuk">Nasıl puanlanır?</a>
         </div>
+        <p class="hero-mini">Sonuçlar yalnızca senin tarayıcında saklanır. Sunucuya gitmez.</p>
+      </div>
 
-        <!-- 2 · Klavye -->
-        <div class="secim-blok">
-          <h3 class="secim-baslik"><span class="secim-no">2</span> Klavye düzenin</h3>
-          <div class="klavye-secim" role="group" aria-label="Klavye düzeni">
-            <button type="button" class="secim-kart" data-klavye="q">
-              <span class="sk-ad">Q Klavye</span><span class="sk-detay">En yaygın</span>
-            </button>
-            <button type="button" class="secim-kart" data-klavye="f">
-              <span class="sk-ad">F Klavye</span><span class="sk-detay">Resmî · hızlı</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- 3 · Metin -->
-        <div class="secim-blok">
-          <h3 class="secim-baslik"><span class="secim-no">3</span> Metin seçimi</h3>
-          <div class="metin-mod" role="group" aria-label="Metin seçimi">
-            <button type="button" class="metin-mod-btn aktif" data-mm="rastgele">🎲 Rastgele</button>
-            <button type="button" class="metin-mod-btn" data-mm="sec">📄 Metin seç</button>
-          </div>
-          <p class="metin-secili" id="metinSecili">Her başlangıçta rastgele bir resmî metin gelir.</p>
-          <div id="metinGrid" class="metin-grid" hidden></div>
-        </div>
-
-        <!-- Ayarlar -->
-        <div class="secim-blok">
-          <h3 class="secim-baslik"><span class="secim-no">4</span> Ayarlar</h3>
-          <div class="ayar-satir">
-            <label class="switch">
-              <input type="checkbox" id="sesChk" />
-              <span class="switch-gorsel"></span>
-              <span class="switch-metin">Ses <small>son saniye ve bitiş uyarısı</small></span>
-            </label>
-            <label class="switch">
-              <input type="checkbox" id="renkChk" />
-              <span class="switch-gorsel"></span>
-              <span class="switch-metin">Canlı renklendirme <small>pratik için — gerçek sınavda yoktur</small></span>
-            </label>
-          </div>
-        </div>
-
-        <button id="baslatBtn" class="btn birincil buyuk">Sınavı Başlat <kbd>Enter</kbd></button>
-
-        <ul class="kural-ozet">
-          <li><b>Metin gizli:</b> Başlat’a basınca gelir — gerçek sınavdaki gibi önceden göremezsin.</li>
-          <li><b>Küçük harf, noktalama yok.</b> Metne sadık kal; nokta, virgül, rakam ekleme.</li>
-          <li><b>Silme serbest.</b> Süre bitince yazım alanı otomatik kilitlenir.</li>
-        </ul>
-      </section>
-
-      <!-- SINAV EKRANI -->
-      <section id="sinavEkran" class="ekran sinav" hidden>
-        <div class="sinav-ust">
-          <div class="sayac-kutu">
-            <span class="sayac-etiket">Kalan Süre</span>
-            <span id="sayac" class="sayac">3:00</span>
-          </div>
-          <div class="canli-kutu">
-            <span class="canli-etiket">Yazılan Kelime</span>
-            <span id="canliKelime" class="canli">0</span>
-          </div>
-          <button id="bitirBtn" class="btn ikincil">Bitir <kbd>Esc</kbd></button>
-        </div>
-
-        <div id="metinAlani" class="metin-alani" aria-label="Yazılacak metin"></div>
-
-        <textarea id="yazmaAlani" class="yazma-alani" spellcheck="false"
-          autocomplete="off" autocorrect="off" autocapitalize="off"
-          placeholder="Yukarıdaki metni buraya yaz…"></textarea>
-        <p class="ipucu">İpucu: Metne birebir sadık kal. Yapıştırma kapalıdır.</p>
-      </section>
-
-      <!-- SONUÇ EKRANI -->
-      <section id="sonucEkran" class="ekran sonuc" hidden>
-        <article class="tutanak-kart">
+      <!-- Gerçek ürün önizlemesi: sonuç tutanağı -->
+      <aside class="hero-gorsel" aria-label="Örnek sonuç tutanağı">
+        <article class="tutanak-kart onizleme">
           <header class="tutanak-baslik">
             <div>
-              <p class="kurum">T.C. Adalet Bakanlığı — Prova</p>
+              <p class="kurum">T.C. Adalet Bakanlığı · Prova</p>
               <h2>Uygulama Sonuç Tutanağı</h2>
             </div>
-            <div id="sonucRozet" class="rozet">—</div>
+            <div class="rozet basarili">GEÇER</div>
           </header>
-          <p id="sonucAciklama" class="sonuc-aciklama"></p>
-          <div id="tutanak" class="tutanak-govde"></div>
-          <div id="hataDokum" class="hata-dokum"></div>
-          <div class="sonuc-butonlar">
-            <button id="tekrarBtn" class="btn birincil">Tekrar Dene <kbd>Enter</kbd></button>
-            <button id="yeniBtn" class="btn ikincil">Ana Ekran</button>
+          <div class="tutanak-govde">
+            <div class="tutanak-satir vurgu"><span>Net Kelime Sayısı</span><strong>78</strong></div>
+            <div class="tutanak-satir"><span>Doğru Kelime</span><strong>78</strong></div>
+            <div class="tutanak-satir"><span>Hatalı Kelime</span><strong>2</strong></div>
+            <div class="tutanak-satir"><span>Atlanan</span><strong>0</strong></div>
+            <div class="tutanak-satir"><span>Hata Oranı</span><strong>%2.5</strong></div>
+            <div class="tutanak-satir"><span>Hız</span><strong>26/dk</strong></div>
           </div>
         </article>
-      </section>
+      </aside>
+    </section>
 
-    </div><!-- /app-ana -->
-
-    <!-- SAĞ YARDIMCI RAY -->
-    <aside class="app-rail" aria-label="Yardımcı kartlar">
-      <h4 class="rail-baslik">Hızlı yardımcılar</h4>
-      <div class="rail-grid">
-        <a href="kurallar.html" class="rail-kart link">
-          <span class="rk-ikon">§</span><span class="rk-ad">Kurallar</span>
-          <span class="rk-alt">Resmî kriterler</span>
-        </a>
-        <a href="tuyolar.html" class="rail-kart link">
-          <span class="rk-ikon">⌨</span><span class="rk-ad">Tüyolar</span>
-          <span class="rk-alt">F/Q parmak</span>
-        </a>
-        <div class="rail-kart">
-          <span class="rk-ikon">🎯</span><span class="rk-ad">Doğruluk</span>
-          <span class="rk-alt">hızdan önce</span>
-        </div>
-        <div class="rail-kart">
-          <span class="rk-ikon">aA</span><span class="rk-ad">Küçük harf</span>
-          <span class="rk-alt">noktalama yok</span>
-        </div>
-        <div class="rail-kart">
-          <span class="rk-ikon">␣</span><span class="rk-ad">Boşluk</span>
-          <span class="rk-alt">net vur</span>
-        </div>
-        <div class="rail-kart">
-          <span class="rk-ikon">%25</span><span class="rk-ad">Hata sınırı</span>
-          <span class="rk-alt">aşarsan kalır</span>
-        </div>
-        <div class="rail-kart">
-          <span class="rk-ikon">⏱</span><span class="rk-ad">Son kelime</span>
-          <span class="rk-alt">serbest</span>
-        </div>
-        <div class="rail-kart">
-          <span class="rk-ikon">22</span><span class="rk-ad">Atlama</span>
-          <span class="rk-alt">22+ = kalır</span>
-        </div>
+    <!-- ÖZELLİKLER (bento) -->
+    <section class="bolum" id="ozellikler">
+      <h2 class="bolum-baslik">Neden gerçeğine en yakın olan bu</h2>
+      <div class="ozellik-bento">
+        <article class="oz-kart genis">
+          <span class="oz-ikon">§</span>
+          <h3>Resmî puanlama motoru</h3>
+          <p>Kelime bazlı hata, 22 kelime atlama kapısı ve yüzde 25 hata sınırı; gerçek tutanakla aynı sonucu verir. Yaklaşık değil, birebir.</p>
+        </article>
+        <article class="oz-kart">
+          <span class="oz-ikon">30</span>
+          <h3>Gerçek metinler</h3>
+          <p>Adalet Bakanlığı PGM'nin yayımladığı 30 gerçek uygulama metni.</p>
+        </article>
+        <article class="oz-kart">
+          <span class="oz-ikon">⌨</span>
+          <h3>F ve Q tüyoları</h3>
+          <p>Parmak yerleşimi renkli; bastığın tuş ekranda yanar.</p>
+        </article>
+        <article class="oz-kart">
+          <span class="oz-ikon">▸</span>
+          <h3>Prompter ve tam ekran</h3>
+          <p>Kelimeler ayarlanabilir hızda kayar; metni tam ekran okuyabilirsin.</p>
+        </article>
+        <article class="oz-kart">
+          <span class="oz-ikon">↗</span>
+          <h3>Gelişimini gör</h3>
+          <p>Her denemen kaydedilir; net kelime trendini grafikte izlersin.</p>
+        </article>
       </div>
-    </aside>
+    </section>
 
+    <!-- NASIL PUANLANIR -->
+    <section class="bolum band" id="nasil-puanlanir">
+      <div class="band-ic">
+        <div class="band-metin">
+          <h2 class="bolum-baslik">Puanlama, gerçek sınavla aynı</h2>
+          <p>
+            Üç dakikada yazdığın metin kelime kelime karşılaştırılır. Fazla harf, eksik harf,
+            yer değiştirme, birleştirme, bölme ve fazla boşluk gibi hataların her biri
+            bir kelime hatası sayılır. Ulaşamadığın kuyruk kısmı atlanan sayılmaz.
+          </p>
+          <a href="kurallar.html" class="btn ikincil">Tüm kuralları oku</a>
+        </div>
+        <ul class="band-esik">
+          <li><strong>180 sn</strong><span>Süre (3 dakika)</span></li>
+          <li><strong>Kelime</strong><span>Değerlendirme birimi</span></li>
+          <li><strong>%25</strong><span>Yanlış oranı sınırı</span></li>
+          <li><strong>22</strong><span>Atlama sınırı</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SSS -->
+    <section class="bolum" id="sss">
+      <h2 class="bolum-baslik">Sık sorulan sorular</h2>
+      <div class="sss-liste">
+        <details>
+          <summary>Katiplik klavye sınavı kaç dakika sürer?</summary>
+          <p>Uygulamalı sınav 3 dakikadır (180 saniye). Bu sürede ekrana gelen metin bilgisayarda yazılır.</p>
+        </details>
+        <details>
+          <summary>Kaç kelime yazmak gerekir, geçme şartı nedir?</summary>
+          <p>Resmî kriterlerde herkese dayatılan sabit bir kelime eşiği yoktur. Başarı iki kapıya bağlıdır: toplam 22 ve üzeri kelime atlanmamalı ve yanlış oranı yüzde 25'i geçmemelidir. Adaylar net kelime sayısına göre sıralanır.</p>
+        </details>
+        <details>
+          <summary>F klavye mi Q klavye mi kullanılır?</summary>
+          <p>Aday kendi çalıştığı düzeni kullanır. Hem F hem Q kabul edilir; F klavye uzun vadede daha hızlı kabul edilir, çoğu aday Q ile çalışır.</p>
+        </details>
+        <details>
+          <summary>Metinler nasıldır, nereden gelir?</summary>
+          <p>Metinler küçük harfle hazırlanır, noktalama ve paragraf içermez. Simülatör, Adalet Bakanlığı PGM'nin yayımladığı gerçek uygulama metinlerini kullanır.</p>
+        </details>
+        <details>
+          <summary>Yanlış yazılan kelime nasıl sayılır?</summary>
+          <p>Değerlendirme kelime bazlıdır. Fazla harf, eksik harf, yer değiştirme, karakter, bölme, birleştirme ve fazla boşluk gibi hataların her biri 1 kelime hatası sayılır.</p>
+        </details>
+        <details>
+          <summary>Site resmî mi, ücretli mi?</summary>
+          <p>KatipSınav bağımsız, ücretsiz ve kayıtsız bir çalışma aracıdır. Adalet Bakanlığı'nın resmî sitesi değildir. Sonuçlar yalnızca tarayıcında saklanır.</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- SON CTA -->
+    <section class="bolum kapanis">
+      <h2>Bir sonraki denemende hazır ol.</h2>
+      <p>Kayıt yok, ücret yok. Başlamak için tek tıkla.</p>
+      <a href="sinav.html" class="btn birincil buyuk">Sınavı Başlat</a>
+    </section>
   </main>
 
   <footer class="dip">
+    <nav class="dip-menu" aria-label="Alt menü">
+      <a href="sinav.html">Sınav</a>
+      <a href="kurallar.html">Kurallar</a>
+      <a href="tuyolar.html">Tüyolar</a>
+      <a href="istatistik.html">İstatistik</a>
+    </nav>
     <p>Bağımsız bir çalışma aracıdır; Adalet Bakanlığı’nın resmî sitesi değildir. Ücretsiz ve kayıtsız.</p>
   </footer>
-
-  <script src="js/engine.js"></script>
-  <script src="js/texts.js"></script>
-  <script src="js/storage.js"></script>
-  <script src="js/exam.js"></script>
-  <script>kur();</script>
 </body>
 </html>

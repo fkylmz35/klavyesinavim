@@ -104,10 +104,26 @@ Marka geçici olarak **KatipSınav** (ikisini de kapsar).
 - **Metin kutusu:** sabit yükseklik (40vh) + kaydırma; yazdıkça aktif kelimeyi takip eder.
 - Mobil düzen doğrulandı (Playwright, 390px).
 
-## Durum: TAMAMLANDI
-Tam çalışır, sunucusuz (index.html çift tık), 4 sayfa, açık/koyu tema, 30 gerçek metin,
-ses + canlı renklendirme, 37/37 test. Yayın kullanıcının kararına bağlı ("yerel" dedi);
-deploy tek adım (statik hosting) uzağında.
+## Eklendi (2026-07-24, dördüncü oturum — v2.0)
+- **Güvenlik:** server.mjs path traversal düzeltildi + güvenlik başlıkları (CSP, X-Frame-Options,
+  nosniff, Referrer-Policy). CSP META DEĞİL BAŞLIK olarak verilir (meta script-src 'self' file://
+  çift-tıklamayı bozardı). Deploy için `_headers` (Netlify/Cloudflare). Satır-içi script'ler
+  dosyalara taşındı (exam.js/stats.js self-init, init-tuyolar.js). localStorage okuma sayısal
+  alanları Number'a zorlar (kurcalama XSS savunması). Tüm innerHTML girişleri kaçırılır.
+- **Yapı değişti:** index.html artık HOMEPAGE; uygulama sinav.html'e taşındı. Nav/CTA/linkler
+  güncellendi (logo→homepage, "Sınav"→sinav.html).
+- **Homepage + SEO/GEO/AEO:** hero (gerçek tutanak önizlemesi), özellik bento'su, puanlama bandı,
+  SSS akordeon. JSON-LD (WebApplication + FAQPage — AEO için), OG/Twitter meta, canonical,
+  sitemap.xml, robots.txt. Tasarım taste + frontend-design ilkeleriyle (tek aksan, serif gerekçeli,
+  AI-tell yok). Puanlama bandı her iki temada sabit lacivert (tema-kilidi).
+- **Tam ekran metin:** ⛶ butonu + görünüm modu; okuma panelini büyütür, rayı gizler.
+- **Prompter modu:** kelimeler ayarlanabilir hızda (15-120 kelime/dk) kayar; aktif kelime vurgulanır.
+- DEPLOY NOTU: sitemap/robots/canonical/OG'de "katipsinav.local" yerine gerçek domain yazılmalı.
+
+## Durum: TAMAMLANDI (v2.0)
+Homepage + 4 uygulama sayfası, sunucusuz (index.html çift tık), açık/koyu tema, 30 gerçek metin,
+prompter + tam ekran, ses + canlı renklendirme, SEO/GEO/AEO, güvenlik başlıkları, 37/37 test.
+Tüm sayfalar tarayıcıda 0 konsol hatasıyla doğrulandı.
 
 ## Notlar
 - Kullanıcı Türkçe iletişim kuruyor; tüm UI ve dokümantasyon Türkçe.

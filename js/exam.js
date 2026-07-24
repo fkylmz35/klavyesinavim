@@ -19,6 +19,32 @@ let baslangicZamani = 0;
 let ayarlar = ayarlariOku();
 let secilenMetinId = null;  // null => rastgele; aksi halde belirli metin
 let aktifKelimeler = [];    // aktif metnin kelime dizisi (canlı renklendirme için)
+let gorunumMod = 'normal';  // 'normal' | 'tamekran' | 'prompter'
+let prompterHiz = 40;       // kelime/dakika
+let prompterId = null, prompterIdx = 0;
+
+// --- Prompter modu (kelimeler ayarlanabilir hızda kayar) --------------------
+function prompterDurdur() {
+  clearInterval(prompterId); prompterId = null;
+  const alan = $('#metinAlani');
+  if (alan) alan.classList.remove('prompter');
+}
+function prompterBaslat() {
+  const alan = $('#metinAlani');
+  alan.classList.add('prompter');
+  prompterIdx = 0;
+  const spanlar = alan.querySelectorAll('.mk-w');
+  const aralik = Math.max(250, Math.round(60000 / prompterHiz));
+  const adim = () => {
+    spanlar.forEach(s => s.classList.remove('prompter-aktif'));
+    if (prompterIdx >= spanlar.length || durum !== 'calisiyor') { prompterDurdur(); return; }
+    const sp = spanlar[prompterIdx];
+    if (sp) { sp.classList.add('prompter-aktif'); sp.scrollIntoView({ block: 'center' }); }
+    prompterIdx++;
+  };
+  adim();
+  prompterId = setInterval(adim, aralik);
+}
 
 // --- Ses (WebAudio; dosyasız, offline) ---------------------------------------
 let sesCtx = null;
@@ -87,6 +113,9 @@ function baslat() {
   $('#metinAlani').innerHTML = aktifKelimeler
     .map((k, i) => `<span class="mk-w" data-i="${i}">${kacir(k)}</span>`).join(' ');
   $('#metinAlani').classList.toggle('renkli', ayarlar.renklendirme);
+  // Görünüm modu uygula
+  document.body.classList.toggle('metin-buyuk', gorunumMod === 'tamekran');
+  prompterDurdur();
   const yazma = $('#yazmaAlani');
   yazma.value = '';
   yazma.disabled = false;
@@ -97,6 +126,7 @@ function baslat() {
   guncelleIstatistik();
 
   ekranDurumu('calisiyor');
+  if (gorunumMod === 'prompter') prompterBaslat();
 
   clearInterval(sayacId);
   sayacId = setInterval(() => {
@@ -130,6 +160,8 @@ function ilerleyeGoster(val) {
 function bitir(sureBitti) {
   if (durum !== 'calisiyor') return;
   clearInterval(sayacId);
+  prompterDurdur();
+  document.body.classList.remove('metin-buyuk');
   durum = 'bitti';
 
   ses('bitti');
@@ -263,6 +295,30 @@ function kur() {
       if (!sec) { secilenMetinId = null; metinSeciliGuncelle(); temizleGridSecim(); }
     }));
 
+  // Görünüm modu kartları (normal / tam ekran / prompter)
+  document.querySelectorAll('.secim-kart[data-gorunum]').forEach(k =>
+    k.addEventListener('click', () => {
+      document.querySelectorAll('.secim-kart[data-gorunum]').forEach(x => x.classList.remove('aktif'));
+      k.classList.add('aktif');
+      gorunumMod = k.dataset.gorunum;
+      const pa = $('#prompterAyar'); if (pa) pa.hidden = gorunumMod !== 'prompter';
+    }));
+  const ph = $('#prompterHiz');
+  if (ph) {
+    ph.value = prompterHiz;
+    ph.addEventListener('input', () => {
+      prompterHiz = Number(ph.value) || 40;
+      $('#prompterHizDeger').textContent = prompterHiz;
+      if (prompterId) { prompterDurdur(); prompterBaslat(); } // canlı hız değişimi
+    });
+  }
+  // Tam ekran metin butonu (sınav sırasında aç/kapat)
+  const teBtn = $('#tamEkranBtn');
+  if (teBtn) teBtn.addEventListener('click', () => {
+    document.body.classList.toggle('metin-buyuk');
+    $('#yazmaAlani').focus();
+  });
+
   // Ayar anahtarları (ses + canlı renklendirme)
   const sesChk = $('#sesChk');
   if (sesChk) {
@@ -327,4 +383,10 @@ function ozetGoster() {
   const enIyi = Math.max(...g.map(d => d.net));
   const gecen = g.filter(d => d.basarili).length;
   kutu.innerHTML = `Toplam deneme: <strong>${g.length}</strong> · En iyi net: <strong>${enIyi}</strong> · Geçer: <strong>${gecen}</strong>`;
+}
+
+// Kendi kendine başlat (satır-içi script olmadan; katı CSP için).
+if (typeof document !== 'undefined' && document.getElementById('baslatBtn')) {
+  if (document.readyState !== 'loading') kur();
+  else document.addEventListener('DOMContentLoaded', kur);
 }

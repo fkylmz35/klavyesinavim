@@ -3,27 +3,25 @@ KatipSınav — Zabıt & İcra Katipliği Klavye Sınavı Simülatörü
 
 NASIL AÇILIR (kurulum gerekmez)
 -------------------------------
-"index.html" dosyasına çift tıkla. Tarayıcıda (Chrome/Edge/Firefox) açılır.
-Kayıt yok, internet gerekmez, ücretsiz.
+"index.html" dosyasına çift tıkla. Ana sayfa açılır; "Sınavı Başlat" ile
+sınav ekranına geçersin. Kayıt yok, internet gerekmez, ücretsiz.
 
 SAYFALAR
 --------
-- Sınav      : Başlamadan önce süre modu, klavye (F/Q) ve metni seçersin
-               (rastgele ya da 30 gerçek metinden biri). 3 dakikalık deneme,
-               süre bitince resmî tutanak formatında sonuç.
-- Kurallar   : Resmî değerlendirme kriterleri, sade anlatım.
-- Tüyolar    : F/Q klavye parmak yerleşimi (tuşa basınca ekranda yanar).
-- İstatistik : Denemelerinin geçmişi ve gelişim grafiği (bu tarayıcıda saklanır).
+- index.html     : Ana sayfa (tanıtım, SSS, nasıl puanlanır).
+- sinav.html     : Sınav ve alıştırma ekranı.
+- kurallar.html  : Resmî değerlendirme kriterleri.
+- tuyolar.html   : F/Q klavye parmak yerleşimi (tuşa basınca ekranda yanar).
+- istatistik.html: Deneme geçmişi ve gelişim grafiği.
 
-ÖZELLİKLER
-----------
-- 30 GERÇEK resmî sınav metni (Adalet Bakanlığı PGM, 2025).
-- Süre modları: Sınav (180 sn) / Isınma (60) / Kısa (120) / Dayanıklılık (300).
-- Açık / koyu tema (sağ üstteki ay-güneş düğmesi).
-- Ses uyarısı (son saniyeler + bitiş) — Ayarlar'dan aç/kapa.
-- Canlı renklendirme (pratik için doğru/yanlış anlık renk) — Ayarlar'dan aç/kapa.
-  Not: gerçek sınavda renklendirme YOKTUR; kapalı başlar.
-- Sağda hızlı yardımcı kartlar (kurallar, tüyolar, hatırlatıcılar).
+SINAV EKRANI ÖZELLİKLERİ
+------------------------
+- Süre modu: Sınav (180 sn) / Isınma (60) / Kısa (120) / Dayanıklılık (300).
+- Klavye seçimi (F/Q), metin seçimi (rastgele veya 30 gerçek metinden biri).
+- Görünüm: Normal / Tam ekran metin (büyük okuma) / Prompter (kelimeler
+  ayarlanabilir hızda kayar). Sınav sırasında ⛶ ile de tam ekrana geçilir.
+- Ses uyarısı ve canlı renklendirme (Ayarlar'dan aç/kapa).
+- 30 GERÇEK resmî metin (Adalet Bakanlığı PGM, 2025).
 
 PUANLAMA (gerçek sınav kriterleriyle)
 -------------------------------------
@@ -31,13 +29,16 @@ PUANLAMA (gerçek sınav kriterleriyle)
 - 22 ve üzeri kelime atlanırsa VEYA yanlış oranı %25'i geçerse: başarısız.
 - Ulaşamadığın (süre yetmeyen) kuyruk atlanan sayılmaz.
 
-NOTLAR
-------
-- Sonuçlar yalnızca senin tarayıcında saklanır; hiçbir yere gönderilmez.
-- Fiziksel klavye önerilir (masaüstü/dizüstü).
+GÜVENLİK
+--------
+- Kayıt yok; sonuçlar yalnızca senin tarayıcında (localStorage) saklanır.
+- Dış kaynak yok (tamamen self-contained). Girdiler kaçırılır (XSS koruması).
+- Deploy'da güvenlik başlıkları için "_headers" dosyası hazır (Netlify/Cloudflare).
 
-GELİŞTİRİCİ NOTU
-----------------
+GELİŞTİRİCİ / YAYIN NOTU
+------------------------
 - Yerel sunucu (opsiyonel): node server.mjs  ->  http://localhost:8080
 - Puanlama motoru testleri:  node tests/engine.test.mjs  (37 test)
-- Yayına almak istersen: statik hosting (Netlify/GitHub Pages/Vercel) — tek adım.
+- Yayına alırken: dosyaları statik hosting'e (Netlify/GitHub Pages/Vercel) yükle.
+  "_headers" güvenlik başlıklarını taşır. sitemap.xml, robots.txt, index.html
+  içindeki canonical/OG adreslerinde "katipsinav.local" yerine GERÇEK alan adını yaz.

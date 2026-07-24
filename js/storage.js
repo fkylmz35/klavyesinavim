@@ -21,10 +21,24 @@ function ayarlariYaz(ayarlar) {
   try { localStorage.setItem(AYAR_ANAHTAR, JSON.stringify(ayarlar)); } catch {}
 }
 
+// Deneme kaydını güvenli/temiz biçime getir: sayısal alanlar Number'a zorlanır,
+// metinler kısaltılır. Kurcalanmış localStorage verisinin arayüze sızmasını önler.
+function sayi(v) { const n = Number(v); return Number.isFinite(n) ? n : 0; }
+function kayitTemizle(k) {
+  if (!k || typeof k !== 'object') return null;
+  return {
+    tarih: typeof k.tarih === 'string' ? k.tarih.slice(0, 40) : '',
+    metinId: typeof k.metinId === 'string' ? k.metinId.slice(0, 60) : '',
+    sure: sayi(k.sure), net: sayi(k.net), dogru: sayi(k.dogru), hatali: sayi(k.hatali),
+    atlanan: sayi(k.atlanan), oran: sayi(k.oran), kpm: sayi(k.kpm), basarili: !!k.basarili,
+  };
+}
+
 function gecmisOku() {
   try {
     const ham = localStorage.getItem(GECMIS_ANAHTAR);
-    return ham ? JSON.parse(ham) : [];
+    const dizi = ham ? JSON.parse(ham) : [];
+    return Array.isArray(dizi) ? dizi.map(kayitTemizle).filter(Boolean) : [];
   } catch { return []; }
 }
 

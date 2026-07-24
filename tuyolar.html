@@ -2,10 +2,13 @@
 <html lang="tr">
 <head>
   <meta charset="UTF-8" />
+  <meta name="referrer" content="no-referrer" />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2316233A'/%3E%3Ctext x='16' y='24' font-size='23' text-anchor='middle' fill='%23FBFAF6' font-family='Georgia,serif' font-weight='bold'%3E%C2%A7%3C/text%3E%3C/svg%3E" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Klavye Tüyoları — F ve Q Parmak Yerleşimi — KatipSınav</title>
   <meta name="description" content="On parmak klavye tekniği, F ve Q düzeninde parmak yerleşimi ve zabıt katibi sınavı için pratik ipuçları." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://katipsinav.local/tuyolar.html" />
   <link rel="stylesheet" href="css/style.css" />
   <script src="js/theme.js"></script>
 </head>
@@ -16,7 +19,7 @@
       <span class="marka-ad">Katip<b>Sınav</b></span>
     </a>
     <nav class="menu">
-      <a href="index.html">Sınav</a>
+      <a href="sinav.html">Sınav</a>
       <a href="kurallar.html">Kurallar</a>
       <a href="tuyolar.html" class="aktif">Tüyolar</a>
       <a href="istatistik.html">İstatistik</a>
@@ -63,7 +66,7 @@
     </ul>
 
     <div class="cta-satir">
-      <a href="index.html" class="btn birincil buyuk">Öğrendiklerini sınavda dene</a>
+      <a href="sinav.html" class="btn birincil buyuk">Öğrendiklerini sınavda dene</a>
     </div>
   </main>
 
@@ -72,31 +75,6 @@
   </footer>
 
   <script src="js/keyboard.js"></script>
-  <script>
-    const klavye = document.getElementById('klavye');
-    const ipucu = document.getElementById('kbIpucu');
-    let duzen = 'q';
-
-    function ipucuMetni(d) {
-      return d === 'f'
-        ? 'F klavye: resmî ve uzun vadede daha hızlı kabul edilir; öğrenmesi emek ister.'
-        : 'Q klavye: en yaygın düzen; çoğu aday bununla çalışır.';
-    }
-    function ciz() { klavyeCiz(klavye, duzen); ipucu.textContent = ipucuMetni(duzen); }
-
-    // Parmak lejantı
-    const lejant = document.getElementById('parmakLejant');
-    lejant.innerHTML = Object.values(PARMAKLAR).map(p =>
-      `<span class="lej"><i style="background:${p.renk}"></i>${p.ad}</span>`).join('');
-
-    document.querySelectorAll('.kb-btn').forEach(b =>
-      b.addEventListener('click', () => {
-        document.querySelectorAll('.kb-btn').forEach(x => x.classList.remove('aktif'));
-        b.classList.add('aktif'); duzen = b.dataset.duzen; ciz();
-      }));
-
-    ciz();
-    canliVurgu(klavye);
-  </script>
+  <script src="js/init-tuyolar.js"></script>
 </body>
 </html>

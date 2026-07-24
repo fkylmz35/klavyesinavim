@@ -100,3 +100,9 @@ function kur() {
 
   window.addEventListener('resize', () => grafikCiz($('#grafik'), son.map(d => d.net)));
 }
+
+// Kendi kendine başlat (satır-içi script olmadan; katı CSP için).
+if (typeof document !== 'undefined' && document.getElementById('tabloGovde')) {
+  if (document.readyState !== 'loading') kur();
+  else document.addEventListener('DOMContentLoaded', kur);
+}

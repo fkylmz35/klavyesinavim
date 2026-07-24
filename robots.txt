@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Yayına alırken alan adını gerçek domaininle değiştir.
+Sitemap: https://katipsinav.local/sitemap.xml
