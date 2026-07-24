@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+*.log
+Thumbs.db
+# geliştirme artıkları
+*.png
+.playwright-mcp/

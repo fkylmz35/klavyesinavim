@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zabıt Katibi Klavye Sınavı Simülatörü — Ücretsiz Deneme</title>
+  <meta name="description" content="Adalet Bakanlığı zabıt katibi uygulamalı (klavye) sınavına birebir benzeyen ücretsiz, kayıtsız simülasyon. 3 dakika, resmî puanlama." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="ust">
+    <a class="marka" href="index.html">
+      <span class="marka-sim" aria-hidden="true">§</span>
+      <span class="marka-ad">Katip<b>Sınav</b></span>
+    </a>
+    <nav class="menu">
+      <a href="index.html" class="aktif">Sınav</a>
+      <a href="kurallar.html">Kurallar</a>
+      <a href="tuyolar.html">Tüyolar</a>
+      <a href="istatistik.html">İstatistik</a>
+    </nav>
+  </header>
+
+  <main class="govde">
+
+    <!-- HAZIR EKRANI -->
+    <section id="hazirEkran" class="ekran hazir">
+      <p class="eyebrow">Adalet Bakanlığı · Uygulamalı Sınav Provası</p>
+      <h1>Gerçek sınav gibi. <span class="vurgu">Üç dakika, tek şans.</span></h1>
+      <p class="alt-baslik">
+        Zabıt katibi klavye sınavının birebir simülasyonu. Resmî değerlendirme
+        kriterleriyle puanlanır: kelime bazlı hata, atlanan kelime ve %25 hata kapısı.
+        Kayıt yok, ücret yok.
+      </p>
+
+      <div class="ozet-kutu" id="ozet">Henüz deneme yok. İlk sınavını başlat!</div>
+
+      <div class="mod-secim" role="group" aria-label="Süre modu">
+        <label class="mod aktif-mod">
+          <input type="radio" name="mod" value="sinav" checked />
+          <span class="mod-ad">Sınav Modu</span><span class="mod-detay">180 sn · resmî</span>
+        </label>
+        <label class="mod">
+          <input type="radio" name="mod" value="60" />
+          <span class="mod-ad">Isınma</span><span class="mod-detay">60 sn</span>
+        </label>
+        <label class="mod">
+          <input type="radio" name="mod" value="120" />
+          <span class="mod-ad">Kısa Pratik</span><span class="mod-detay">120 sn</span>
+        </label>
+        <label class="mod">
+          <input type="radio" name="mod" value="300" />
+          <span class="mod-ad">Dayanıklılık</span><span class="mod-detay">300 sn</span>
+        </label>
+      </div>
+
+      <button id="baslatBtn" class="btn birincil buyuk">Sınavı Başlat <kbd>Enter</kbd></button>
+
+      <ul class="kural-ozet">
+        <li><b>Metin gizli:</b> Başlat’a basınca gelir — gerçek sınavdaki gibi önceden göremezsin.</li>
+        <li><b>Küçük harf, noktalama yok.</b> Metne sadık kal; nokta, virgül, rakam ekleme.</li>
+        <li><b>Silme serbest.</b> Süre bitince yazım alanı otomatik kilitlenir.</li>
+      </ul>
+    </section>
+
+    <!-- SINAV EKRANI -->
+    <section id="sinavEkran" class="ekran sinav" hidden>
+      <div class="sinav-ust">
+        <div class="sayac-kutu">
+          <span class="sayac-etiket">Kalan Süre</span>
+          <span id="sayac" class="sayac">3:00</span>
+        </div>
+        <div class="canli-kutu">
+          <span class="canli-etiket">Yazılan Kelime</span>
+          <span id="canliKelime" class="canli">0</span>
+        </div>
+        <button id="bitirBtn" class="btn ikincil">Bitir <kbd>Esc</kbd></button>
+      </div>
+
+      <div id="metinAlani" class="metin-alani" aria-label="Yazılacak metin"></div>
+
+      <textarea id="yazmaAlani" class="yazma-alani" spellcheck="false"
+        autocomplete="off" autocorrect="off" autocapitalize="off"
+        placeholder="Yukarıdaki metni buraya yaz…"></textarea>
+      <p class="ipucu">İpucu: Metne birebir sadık kal. Yapıştırma kapalıdır.</p>
+    </section>
+
+    <!-- SONUÇ EKRANI -->
+    <section id="sonucEkran" class="ekran sonuc" hidden>
+      <article class="tutanak-kart">
+        <header class="tutanak-baslik">
+          <div>
+            <p class="kurum">T.C. Adalet Bakanlığı — Prova</p>
+            <h2>Uygulama Sonuç Tutanağı</h2>
+          </div>
+          <div id="sonucRozet" class="rozet">—</div>
+        </header>
+        <p id="sonucAciklama" class="sonuc-aciklama"></p>
+        <div id="tutanak" class="tutanak-govde"></div>
+        <div id="hataDokum" class="hata-dokum"></div>
+        <div class="sonuc-butonlar">
+          <button id="tekrarBtn" class="btn birincil">Tekrar Dene <kbd>Enter</kbd></button>
+          <button id="yeniBtn" class="btn ikincil">Ana Ekran</button>
+        </div>
+      </article>
+    </section>
+
+  </main>
+
+  <footer class="dip">
+    <p>Bağımsız bir çalışma aracıdır; Adalet Bakanlığı’nın resmî sitesi değildir. Ücretsiz ve kayıtsız.</p>
+  </footer>
+
+  <script type="module">
+    import { kur } from './js/exam.js';
+    kur();
+    // Mod seçiminde görsel aktiflik
+    document.querySelectorAll('.mod input').forEach(r =>
+      r.addEventListener('change', () => {
+        document.querySelectorAll('.mod').forEach(m => m.classList.remove('aktif-mod'));
+        r.closest('.mod').classList.add('aktif-mod');
+      }));
+  </script>
+</body>
+</html>
