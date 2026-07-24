@@ -94,9 +94,20 @@ Marka geçici olarak **KatipSınav** (ikisini de kapsar).
   ulaşılamayan kuyruk ATLANAN sayılmaz (önceden 300 kelimelik metinde herkes otomatik KALIR
   oluyordu). Bkz. engine.js `jSon` (en düşük maliyetli bitiş noktası). 37/37 test geçiyor.
 
-## Sıradaki (opsiyonel cila)
-Ses efektleri, sınavda canlı renklendirme aç/kapa, ısınma turu vurgusu.
-Sonra istenirse deploy (Netlify/GitHub Pages/Vercel).
+## Eklendi (2026-07-24, üçüncü oturum — PROJE TAMAMLANDI)
+- **Seçim kartları:** başlamadan süre + klavye (Q/F) + metin (rastgele veya 30'dan biri) seçimi.
+- **Sağ yardımcı ray:** kare kutucuklar (Kurallar/Tüyolar linkleri + hatırlatıcılar); seçim ve sınav
+  ekranında görünür, mobilde alta iner.
+- **Ayarlar:** ses (son saniye tik + bitiş çanı, WebAudio) ve canlı renklendirme anahtarları,
+  localStorage'da. Canlı renklendirme varsayılan KAPALI (gerçek sınavda yok).
+- **Canlı renklendirme:** metin kelime kelime span; doğru=yeşil, yanlış=kırmızı, aktif=altı çizili.
+- **Metin kutusu:** sabit yükseklik (40vh) + kaydırma; yazdıkça aktif kelimeyi takip eder.
+- Mobil düzen doğrulandı (Playwright, 390px).
+
+## Durum: TAMAMLANDI
+Tam çalışır, sunucusuz (index.html çift tık), 4 sayfa, açık/koyu tema, 30 gerçek metin,
+ses + canlı renklendirme, 37/37 test. Yayın kullanıcının kararına bağlı ("yerel" dedi);
+deploy tek adım (statik hosting) uzağında.
 
 ## Notlar
 - Kullanıcı Türkçe iletişim kuruyor; tüm UI ve dokümantasyon Türkçe.

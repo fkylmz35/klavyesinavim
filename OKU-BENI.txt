@@ -8,19 +8,36 @@ Kayıt yok, internet gerekmez, ücretsiz.
 
 SAYFALAR
 --------
-- Sınav      : Gerçek sınav gibi 3 dakikalık deneme, tutanak sonucu.
+- Sınav      : Başlamadan önce süre modu, klavye (F/Q) ve metni seçersin
+               (rastgele ya da 30 gerçek metinden biri). 3 dakikalık deneme,
+               süre bitince resmî tutanak formatında sonuç.
 - Kurallar   : Resmî değerlendirme kriterleri, sade anlatım.
 - Tüyolar    : F/Q klavye parmak yerleşimi (tuşa basınca ekranda yanar).
 - İstatistik : Denemelerinin geçmişi ve gelişim grafiği (bu tarayıcıda saklanır).
 
+ÖZELLİKLER
+----------
+- 30 GERÇEK resmî sınav metni (Adalet Bakanlığı PGM, 2025).
+- Süre modları: Sınav (180 sn) / Isınma (60) / Kısa (120) / Dayanıklılık (300).
+- Açık / koyu tema (sağ üstteki ay-güneş düğmesi).
+- Ses uyarısı (son saniyeler + bitiş) — Ayarlar'dan aç/kapa.
+- Canlı renklendirme (pratik için doğru/yanlış anlık renk) — Ayarlar'dan aç/kapa.
+  Not: gerçek sınavda renklendirme YOKTUR; kapalı başlar.
+- Sağda hızlı yardımcı kartlar (kurallar, tüyolar, hatırlatıcılar).
+
+PUANLAMA (gerçek sınav kriterleriyle)
+-------------------------------------
+- 3 dakika, kelime bazlı. Her hata türü 1 kelime hatası.
+- 22 ve üzeri kelime atlanırsa VEYA yanlış oranı %25'i geçerse: başarısız.
+- Ulaşamadığın (süre yetmeyen) kuyruk atlanan sayılmaz.
+
 NOTLAR
 ------
-- Sonuçlar sadece senin tarayıcında saklanır; hiçbir yere gönderilmez.
-- Gerçek sınav kriterlerine göre puanlar: 3 dakika, kelime bazlı hata,
-  22+ atlanan kelime veya %25+ hata = başarısız.
-- Fiziksel klavye önerilir (telefonda çalışmaz gibi düşün).
+- Sonuçlar yalnızca senin tarayıcında saklanır; hiçbir yere gönderilmez.
+- Fiziksel klavye önerilir (masaüstü/dizüstü).
 
 GELİŞTİRİCİ NOTU
 ----------------
 - Yerel sunucu (opsiyonel): node server.mjs  ->  http://localhost:8080
-- Puanlama motoru testleri:  node tests/engine.test.mjs
+- Puanlama motoru testleri:  node tests/engine.test.mjs  (37 test)
+- Yayına almak istersen: statik hosting (Netlify/GitHub Pages/Vercel) — tek adım.

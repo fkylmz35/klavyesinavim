@@ -18,6 +18,46 @@ let sayacId = null;
 let baslangicZamani = 0;
 let ayarlar = ayarlariOku();
 let secilenMetinId = null;  // null => rastgele; aksi halde belirli metin
+let aktifKelimeler = [];    // aktif metnin kelime dizisi (canlı renklendirme için)
+
+// --- Ses (WebAudio; dosyasız, offline) ---------------------------------------
+let sesCtx = null;
+function ses(tip) {
+  if (!ayarlar.ses) return;
+  try {
+    sesCtx = sesCtx || new (window.AudioContext || window.webkitAudioContext)();
+    const o = sesCtx.createOscillator(), g = sesCtx.createGain();
+    o.connect(g); g.connect(sesCtx.destination);
+    const t = sesCtx.currentTime;
+    if (tip === 'tik') {
+      o.frequency.value = 880; g.gain.setValueAtTime(0.06, t);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 0.06); o.start(t); o.stop(t + 0.06);
+    } else if (tip === 'bitti') {
+      o.type = 'triangle'; o.frequency.setValueAtTime(540, t);
+      o.frequency.exponentialRampToValueAtTime(300, t + 0.35);
+      g.gain.setValueAtTime(0.14, t); g.gain.exponentialRampToValueAtTime(0.0001, t + 0.4);
+      o.start(t); o.stop(t + 0.4);
+    }
+  } catch (e) { /* ses desteklenmiyorsa sessiz geç */ }
+}
+
+// --- Canlı renklendirme (yalnız pratik; ayar açıksa) -------------------------
+function canliRenklendir() {
+  const alan = $('#metinAlani');
+  const val = $('#yazmaAlani').value;
+  const bosBiter = /\s$/.test(val);
+  const tokens = val.split(/\s+/).filter(x => x.length);
+  const tamamlanan = bosBiter ? tokens.length : Math.max(0, tokens.length - 1);
+  const spanlar = alan.querySelectorAll('.mk-w');
+  spanlar.forEach((sp, i) => {
+    sp.classList.remove('dogru', 'yanlis', 'aktif');
+    if (i < tamamlanan) {
+      sp.classList.add(tokens[i] === aktifKelimeler[i] ? 'dogru' : 'yanlis');
+    } else if (i === tamamlanan && tokens.length && !bosBiter) {
+      sp.classList.add('aktif');
+    }
+  });
+}
 
 // --- Süre ayarı (mod) --------------------------------------------------------
 function seciliSure() {
@@ -43,11 +83,13 @@ function baslat() {
   durum = 'calisiyor';
   baslangicZamani = Date.now();
 
-  $('#metinAlani').textContent = aktifMetin.metin;
+  aktifKelimeler = aktifMetin.metin.split(' ');
+  $('#metinAlani').innerHTML = aktifKelimeler
+    .map((k, i) => `<span class="mk-w" data-i="${i}">${kacir(k)}</span>`).join(' ');
+  $('#metinAlani').classList.toggle('renkli', ayarlar.renklendirme);
   const yazma = $('#yazmaAlani');
   yazma.value = '';
   yazma.disabled = false;
-  yazma.classList.toggle('renklendir', ayarlar.renklendirme);
   yazma.focus();
 
   $('#sayac').textContent = ddss(kalanSaniye);
@@ -61,14 +103,27 @@ function baslat() {
     kalanSaniye--;
     $('#sayac').textContent = ddss(kalanSaniye);
     if (kalanSaniye <= 10) $('#sayac').classList.add('kritik');
+    if (kalanSaniye > 0 && kalanSaniye <= 3) ses('tik');
     if (kalanSaniye <= 0) bitir(true);
   }, 1000);
 }
 
-// --- Canlı istatistik (kelime sayısı) ---------------------------------------
+// --- Canlı istatistik (kelime sayısı + renklendirme + takip) ----------------
 function guncelleIstatistik() {
-  const yazilan = splitWords($('#yazmaAlani').value).length;
-  $('#canliKelime').textContent = yazilan;
+  const val = $('#yazmaAlani').value;
+  $('#canliKelime').textContent = splitWords(val).length;
+  if (durum !== 'calisiyor') return;
+  if (ayarlar.renklendirme) canliRenklendir();
+  ilerleyeGoster(val);
+}
+
+// Metin kutusunu, adayın yazmakta olduğu kelimeye kaydır (gerçek sınav akışı).
+function ilerleyeGoster(val) {
+  const bosBiter = /\s$/.test(val);
+  const tokens = val.split(/\s+/).filter(x => x.length);
+  const idx = bosBiter ? tokens.length : Math.max(0, tokens.length - 1);
+  const sp = $('#metinAlani').querySelector(`.mk-w[data-i="${idx}"]`);
+  if (sp) sp.scrollIntoView({ block: 'nearest' });
 }
 
 // --- Sınavı bitir ------------------------------------------------------------
@@ -77,6 +132,7 @@ function bitir(sureBitti) {
   clearInterval(sayacId);
   durum = 'bitti';
 
+  ses('bitti');
   const yazma = $('#yazmaAlani');
   yazma.disabled = true;
   const gecenSure = Math.min(seciliSure(), Math.round((Date.now() - baslangicZamani) / 1000)) || 1;
@@ -206,6 +262,26 @@ function kur() {
       $('#metinGrid').hidden = !sec;
       if (!sec) { secilenMetinId = null; metinSeciliGuncelle(); temizleGridSecim(); }
     }));
+
+  // Ayar anahtarları (ses + canlı renklendirme)
+  const sesChk = $('#sesChk');
+  if (sesChk) {
+    sesChk.checked = ayarlar.ses;
+    sesChk.addEventListener('change', () => { ayarlar.ses = sesChk.checked; ayarlariYaz(ayarlar); });
+  }
+  const renkChk = $('#renkChk');
+  if (renkChk) {
+    renkChk.checked = ayarlar.renklendirme;
+    renkChk.addEventListener('change', () => {
+      ayarlar.renklendirme = renkChk.checked; ayarlariYaz(ayarlar);
+      const alan = $('#metinAlani');
+      if (alan) alan.classList.toggle('renkli', ayarlar.renklendirme);
+      if (durum === 'calisiyor') {
+        if (ayarlar.renklendirme) canliRenklendir();
+        else alan.querySelectorAll('.mk-w').forEach(s => s.classList.remove('dogru', 'yanlis', 'aktif'));
+      }
+    });
+  }
 
   ozetGoster();
 }

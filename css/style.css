@@ -452,3 +452,37 @@ body {
 }
 
 .metin-grid[hidden] { display: none; }
+
+/* ==========================================================================
+   Canlı renklendirme + ayar anahtarları (switch)
+   ========================================================================== */
+.metin-alani .mk-w { border-radius: 4px; padding: 0 1px; transition: background .1s, color .1s; }
+.metin-alani.renkli .mk-w.dogru { color: var(--gecer); }
+.metin-alani.renkli .mk-w.yanlis { color: var(--muhur); background: rgba(181,50,42,.12); }
+.metin-alani.renkli .mk-w.aktif { background: rgba(22,35,58,.12); box-shadow: inset 0 -2px 0 var(--ink); }
+[data-tema="koyu"] .metin-alani.renkli .mk-w.aktif { background: rgba(232,236,243,.14); box-shadow: inset 0 -2px 0 var(--ink); }
+
+.ayar-satir { display: flex; flex-direction: column; gap: 14px; }
+.switch { display: flex; align-items: center; gap: 12px; cursor: pointer; }
+.switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+.switch-gorsel {
+  width: 44px; height: 26px; border-radius: 20px; background: var(--cizgi);
+  position: relative; transition: background .2s; flex-shrink: 0;
+}
+.switch-gorsel::after {
+  content: ""; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px;
+  border-radius: 50%; background: #fff; transition: transform .2s; box-shadow: 0 1px 3px rgba(0,0,0,.35);
+}
+.switch input:checked + .switch-gorsel { background: var(--ink); }
+.switch input:checked + .switch-gorsel::after { transform: translateX(18px); }
+.switch input:focus-visible + .switch-gorsel { outline: 3px solid rgba(22,35,58,.28); outline-offset: 2px; }
+.switch-metin { font-size: 14.5px; color: var(--ink); font-weight: 600; }
+.switch-metin small { display: block; font-size: 12px; color: var(--soluk); font-weight: 400; }
+
+/* Metin kutusu sabit yükseklik + kaydırma (uzun metinler için) */
+.metin-alani { max-height: 40vh; overflow-y: auto; scroll-behavior: smooth; }
+
+/* Mobilde ray kartları kompakt (kare yerine kısa) */
+@media (max-width: 900px) {
+  .rail-kart { aspect-ratio: auto; min-height: 78px; padding: 10px; }
+}
